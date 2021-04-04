@@ -10,7 +10,15 @@ const App = (() => {
             tasks: {}
         }
 
+        return elements
     });
-    
+
     let projects = {}
+
+    
 });
+
+let navBar = document.getElementById('navBar')
+let newItem = document.createElement('ul')
+newItem.textContent = 'newItem'
+navBar.appendChild(newItem)
