@@ -9,11 +9,17 @@ ul {
     position: relative;
     display: inline-block;
     background-color: #5e737d;
-    height: 46px;
-    min-width: 50px;
-    text-align: left;
-    vertical-align: middle;
-    line-height: 46px;
+    height: 36px;
+    width: auto;
+    margin: auto;
+    text-align: center;
+    line-height: 36px;
+    margin-top: auto;
+    padding-right: 36px;
+    min-width: 10px;
+    max-width: 150px;
+    border-style: outset;
+    border-color: #7d7d7d;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -37,19 +43,13 @@ ul:hover {
 }
 
 #navbar {
+    width: auto;
     height: 50px;
     border-color: black;
     border-style: solid;
     background-color: rgba(11, 59, 81, 0.53);
+    overflow: scroll;
 }
-
-#newProjectButton {
-    margin: auto;
-    min-width: 50px;
-    border-style: outset;
-    border-color: #7d7d7d;
-}
-
 
 #taskContainer {
     min-height: 300px;
