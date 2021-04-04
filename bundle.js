@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("const App = (() => {\n\n    const DOM = (() => {\n\n        let elements = {\n            appContainer: document.getElementById('appContainer'),\n            navBar:  document.getElementById('navBar'),\n            newProjectButton: document.getElementById('newProjectButton'),\n            taskContainer: document.getElementById('taskContainer'),\n            tasks: {}\n        }\n\n    });\n});\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("const App = (() => {\n\n    const DOM = (() => {\n\n        let elements = {\n            appContainer: document.getElementById('appContainer'),\n            navBar:  document.getElementById('navBar'),\n            newProjectButton: document.getElementById('newProjectButton'),\n            taskContainer: document.getElementById('taskContainer'),\n            tasks: {}\n        }\n\n    });\n    \n    let projects = {}\n});\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
 
 /***/ })
 
