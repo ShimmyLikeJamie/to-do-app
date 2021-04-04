@@ -1,9 +1,30 @@
 html {
-    background-color: darkslategray;
+    background-color: #1d2020;
+    background-image: url('../media/background.png');
+    height: 100%;
+    width: auto;
 }
 
-li {
-    display: inline;
+ul {
+    position: relative;
+    display: inline-block;
+    background-color: #5e737d;
+    height: 46px;
+    min-width: 50px;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 46px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+ul:hover {
+    background-color: pink;
+}
+
+#appContainer {
+    background-color: rgba(53, 59, 59, 0.75);
 }
 
 #banner {
@@ -19,13 +40,21 @@ li {
     height: 50px;
     border-color: black;
     border-style: solid;
-    background-color: #1a8cc1;
+    background-color: rgba(11, 59, 81, 0.53);
 }
 
 #newProjectButton {
+    margin: auto;
+    min-width: 50px;
+    border-style: outset;
+    border-color: #7d7d7d;
+}
+
+
+#taskContainer {
+    min-height: 300px;
+    min-width: 300px;
+    height: 80%;
     border-style: solid;
     border-color: black;
-    width: 10px;
-    text-align: center;
-    transform: translateY(10px);
 }
