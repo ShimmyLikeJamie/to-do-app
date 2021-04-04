@@ -11,4 +11,6 @@ const App = (() => {
         }
 
     });
+    
+    let projects = {}
 });
