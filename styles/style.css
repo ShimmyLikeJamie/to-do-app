@@ -4,21 +4,43 @@ html {
     height: 95%;
     width: auto;
     font-family: sans-serif;
+    font-size: 20px;
 }
 
 label, input {
-    height: 15px;
-    width: 180px;
+    height: 40px;
+    width: 240px;
+    color: #d6d6d6;
+    margin-left: 6px;
 }
 
-#checklist {
-    padding: 0px;
-    width: 15px;
+textarea {
+    margin-left: 6px;
+    width: auto;
+}
+
+textarea {
+    position: relative;
+    resize: none;
+    float: center;
+    max-width: 250px;
+    margin-left: 8px;
 }
 
 ul {
     display: inline-block;
-    height: 100%
+    height: 100%;
+}
+ul:hover {
+    background-color: #00c8f0;
+}
+
+li {
+    list-style-type: none;
+}
+
+ol {
+    display: inline;
 }
 
 .navItem {
@@ -41,24 +63,12 @@ ul {
     text-overflow: ellipsis;
 }
 
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-::-webkit-scrollbar-track {
-background: #292929; 
-}
-
-::-webkit-scrollbar-thumb {
-background: #555; 
-}
-
-::-webkit-scrollbar-thumb:hover {
-background: #949494; 
-}
-
-ul:hover {
-    background-color: #ffc7da;
+.name {
+    line-height: 20px;
+    font-size: 20px;
+    width: auto;
+    white-space: normal;
+    border: solid rgba(31, 31, 31, 0.75);
 }
 
 .task {
@@ -68,21 +78,35 @@ ul:hover {
     border-color: black;
     display: block;
     height: 100%;
-    width: 182px;
-    min-width: 182px;
+    width: 250px;
+    min-width: 250px;
     white-space: nowrap;
     margin-right: 0;
+}
+
+.notes {
+    background-color: ;
 }
 
 .createButton {
     text-align: center;
     background-color: #007b94;
-    border: medium outset #7d7d7d;
+    border-style: outset;
+    border-color: black;
+    margin-top: 5px;
 }
-
+.taskItem {
+    text-align: center;
+    border-style: outset;
+    border-color: black;
+}
+.taskItem:hover {
+    border-style: inset;
+    background-color: #00c8f0;
+}
 .createButton:hover {
     border-style: inset;
-    background-color: #ffc7da;
+    background-color: #00c8f0;
 }
 
 #newProjectButton {
@@ -92,13 +116,12 @@ ul:hover {
     margin-left: 1px;
     background-color: #007b94;
 }
-
 #newProjectButton:hover {
-    background-color: #ffc7da;
+    background-color: #00c8f0;
 }
 
 #appContainer {
-    background-color: rgba(53, 59, 59, 0.75);
+    background-color: rgba(31, 31, 31, 0.75);
 }
 
 #banner {
@@ -134,4 +157,21 @@ ul:hover {
     overflow-y: hidden;
     white-space: nowrap;
     margin-right: 0;
+    color: #d6d6d6;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+background: #292929; 
+}
+
+::-webkit-scrollbar-thumb {
+background: #555; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #949494; 
 }
