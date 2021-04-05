@@ -16,6 +16,11 @@ label, input {
     width: 15px;
 }
 
+ul {
+    display: inline-block;
+    height: 100%
+}
+
 .navItem {
     position: relative;
     display: inline-block;
@@ -29,7 +34,7 @@ label, input {
     padding-right: 38px;
     margin-bottom: 1px;
     min-width: 10px;
-    max-width: 150px;
+    max-width: 172px;
     border-style: outset;
     border-color: #7d7d7d;
     overflow: hidden;
@@ -56,12 +61,17 @@ ul:hover {
     background-color: #ffc7da;
 }
 
-.newTask {
+.task {
+    display: flex;
+    flex-flow: column;
     border-style: solid;
     border-color: black;
     display: block;
     height: 100%;
     width: 182px;
+    min-width: 182px;
+    white-space: nowrap;
+    margin-right: 0;
 }
 
 .createButton {
@@ -113,9 +123,15 @@ ul:hover {
 }
 
 #taskContainer {
-    min-height: 300px;
-    min-width: 300px;
+    display: flex;
+    flex-flow: row;
+    width: auto;
     height: 80%;
-    border-style: solid;
     border-color: black;
+    border-style: solid;
+    background-color: rgba(11, 59, 81, 0.53);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-right: 0;
 }
