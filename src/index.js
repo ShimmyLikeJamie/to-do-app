@@ -21,4 +21,5 @@ const App = (() => {
 let navBar = document.getElementById('navBar')
 let newItem = document.createElement('ul')
 newItem.textContent = 'newItem'
+newItem.setAttribute('class', 'navItem')
 navBar.appendChild(newItem)

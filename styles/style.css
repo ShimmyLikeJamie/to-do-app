@@ -3,12 +3,23 @@ html {
     background-image: url('../media/background.png');
     height: 95%;
     width: auto;
+    font-family: sans-serif;
 }
 
-ul {
+label, input {
+    height: 15px;
+    width: 180px;
+}
+
+#checklist {
+    padding: 0px;
+    width: 15px;
+}
+
+.navItem {
     position: relative;
     display: inline-block;
-    background-color: #919191;
+    background-color: #007b94;
     height: 38px;
     width: auto;
     margin: auto;
@@ -42,6 +53,25 @@ background: #949494;
 }
 
 ul:hover {
+    background-color: #ffc7da;
+}
+
+.newTask {
+    border-style: solid;
+    border-color: black;
+    display: block;
+    height: 100%;
+    width: 182px;
+}
+
+.createButton {
+    text-align: center;
+    background-color: #007b94;
+    border: medium outset #7d7d7d;
+}
+
+.createButton:hover {
+    border-style: inset;
     background-color: #ffc7da;
 }
 
