@@ -3,15 +3,31 @@
         <link rel='stylesheet' type='text/css' href='../styles/style.css'>
     </head>
     <body>
-        <div id='banner'>Banner</div>
+        <div id='banner'>To-Do App</div>
         <div id='appContainer'>
             <div id='navBar'>
-                <ul id='newProjectButton'>+</ul>
+                <ul id='newProjectButton' class='navItem'>+</ul>
             </div>
             <div id='taskContainer'>
-                <div class='task'>
-                    <li>test</li>
+                <div class='newTask'>
+                    <form>
+                        <label for='name'>Name:</label><br>
+                        <input type='text' id='name'><br>
+                        <label for='description'>Description:</label><br>
+                        <input type='text' id='description'><br>
+                        <label for='dueDate'>Due:</label><br>
+                        <input type='datetime-local' id='dueDate'><br>
+                        <label for='notes'>Notes:</label><br>
+                        <input type='text' id='notes'><br>
+                        <label for='checklist'>Checklist? </label>
+                        <input type='checkbox' id='checklist'><br>
+                        <div class='createButton'>Create</div>
+                    </form>                   
                 </div>
+                <div class='task'>
+                    <ul></ul>>
+                </div>
+            </div>
             </div>
         </div>
         <div class='footer'>Footer</div>
