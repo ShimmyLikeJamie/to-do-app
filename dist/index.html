@@ -9,27 +9,16 @@
                 <ul id='newProjectButton' class='navItem'>+</ul>
             </div>
             <div id='taskContainer'>
-                <div class='task' id='newTask'>
-                    <form>
-                        <label for='name'>Name:</label><br>
-                        <input type='text' id='name'><br>
-                        <label for='dueDate'>Due:</label><br>
-                        <input type='datetime-local' id='dueDate'><br>
-                        <label for='notes'>Notes:</label><br>
-                        <textarea id='notes' rows='10' cols='30'></textarea>
-                        <div class='createButton'>Create</div>
-                    </form>                   
-                </div>
                 <div class='task'>
                     <div contentEditable='true' class='name taskItem'>Some Name</div>
                     <div class='dueDate taskItem'>Due: <span>example time</span></div>
-                    <li class='notes'>notes</li>
-                    <ol class='checklist'>Checklist<br>
+                    <div class='priority taskItem'>Priority: <span>medium</span></div>
+                    <li class='notes taskItem'>notes</li>
+                    <ol class='checklist taskItem'>Checklist<br>
                         <input type='checkbox' class='checkbox'><li>itemOne</li>
                         <input type='checkbox' class='checkbox'><li>itemTwo</li>
                     </ol>
                 </div>
-            </div>
             </div>
         </div>
         <div class='footer'>Footer</div>
