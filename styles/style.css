@@ -4,28 +4,15 @@ html {
     height: 95%;
     width: auto;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 16px;
 }
 
-label, input {
+input {
     height: 40px;
     width: 240px;
     color: #d6d6d6;
     margin-left: 6px;
-}
-
-textarea {
-    margin-left: 6px;
-    width: auto;
-}
-
-textarea {
-    position: relative;
-    resize: none;
-    float: center;
-    max-width: 250px;
-    margin-left: 8px;
-}
+}   
 
 ul {
     display: inline-block;
@@ -40,7 +27,7 @@ li {
 }
 
 ol {
-    display: inline;
+    display: inline-block;
 }
 
 .navItem {
@@ -71,6 +58,10 @@ ol {
     border: solid rgba(31, 31, 31, 0.75);
 }
 
+.notes {
+    height: 150px;
+}
+
 .task {
     display: flex;
     flex-flow: column;
@@ -91,18 +82,60 @@ ol {
     border-color: black;
     margin-top: 5px;
 }
+
+.checklistItem {
+    display: block;
+    padding-left: 0;
+    max-width: 250px;
+    text-align: left;
+    height: auto;
+    word-wrap: normal;
+}
+
+#checklistItem {
+    height: 40px;
+    display: block;
+    word-wrap:normal;
+    white-space: normal;
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
 .taskItem {
     text-align: center;
     border-style: outset;
     border-color: black;
+    background-color: #007b94;
+    margin-top: 2px;
 }
 .taskItem:hover {
     border-style: inset;
     background-color: #00c8f0;
 }
-.createButton:hover {
-    border-style: inset;
-    background-color: #00c8f0;
+
+.checklist {
+    display: inline-block;
+    width: 240px;
+    margin-left: 2px;
+    height: 20px;
+    padding-left: 0;
+    margin-bottom: 2px;
+}
+.checklist:hover {
+    background-color: #007b94;
+}
+
+.checkbox {
+    width: 20px;
+    height: auto;
+    margin-top: 8px;
+    float: left;
+}
+
+#checklistText {
+    display: inline-block;
+    max-width: 220px;
+    height: auto;
 }
 
 #newProjectButton {

@@ -10,14 +10,16 @@
             </div>
             <div id='taskContainer'>
                 <div class='task'>
-                    <div contentEditable='true' class='name taskItem'>Some Name</div>
-                    <div class='dueDate taskItem'>Due: <span>example time</span></div>
-                    <div class='priority taskItem'>Priority: <span>medium</span></div>
-                    <li class='notes taskItem'>notes</li>
-                    <ol class='checklist taskItem'>Checklist<br>
-                        <input type='checkbox' class='checkbox'><li>itemOne</li>
-                        <input type='checkbox' class='checkbox'><li>itemTwo</li>
+                    <div class='taskItem taskExpand' id='taskExpand' >+</div> 
+                    <div contentEditable='true' class='name taskItem' id='name'>Some Name</div>
+                    <div class='dueDate taskItem' id='dueDate'>Due: <span contentEditable='true'>example time</span></div>
+                    <div class='priority taskItem' id='priority'>Priority: <span>medium</span></div>
+                    <div class='taskItem notes'>notes</div>
+                    <ol class='checklist taskItem' id='checklist'>Checklist<br>
+                        <input type='checkbox' class='checkbox'><li class='checklistItem' id='checklistItem'>texttetext textextextextext textextexte xesdfsdfsdfstextextextextext textextexte xesdfsdfsdfstextextextextext textextexte xesdfsdfsdfstextextextextext textextexte xesdfsdfsdfs</li>
+                        <input type='checkbox' class='checkbox'><li class='checklistItem' id='checklistItem'></li>
                     </ol>
+
                 </div>
             </div>
         </div>
