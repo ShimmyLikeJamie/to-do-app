@@ -59,54 +59,86 @@ ol {
 }
 
 .notes {
-    height: 150px;
+    height: 175px;
+    border-radius: 3px;
+}
+#notes:hover {
+    background-color: rgba(0, 123, 148, 0.75);
+}
+.notesText {
+    height: 85%;
+    width: 95%;
+    margin-left: 2.5%; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(0, 60, 82, 0.75);
+    text-align: left;
+    word-wrap:break-word;
+    white-space: normal;
+    border-radius: 3px;
 }
 
 .task {
     display: flex;
     flex-flow: column;
     border-style: solid;
-    border-color: black;
+    border-color: rgba(31, 31, 31, 0.75);
     display: block;
     height: 100%;
     width: 250px;
     min-width: 250px;
-    white-space: nowrap;
+    white-space: normal;
+    word-wrap: break-word;
     margin-right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.createButton {
-    text-align: center;
-    background-color: #007b94;
-    border-style: outset;
-    border-color: black;
-    margin-top: 5px;
-}
 
 .checklistItem {
     display: block;
     padding-left: 0;
-    max-width: 250px;
+    width:200px;
+    margin: 0;
     text-align: left;
     height: auto;
-    word-wrap: normal;
 }
 
 #checklistItem {
-    height: 40px;
+    height: 60px;
     display: block;
-    word-wrap:normal;
     white-space: normal;
     overflow-x: auto;
     margin-top: 10px;
+}
+
+.addChecklistItem {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    padding-left: 0;
+    background-color: #007b94;
+    border-radius: 3px 3px 3px 3px;
+    margin-top: 5px;
+}
+
+.removeChecklistItem  {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-left: 70px;
+    background-color: rgba(146, 22, 22, 0.85);
+    border-radius: 3px 3px 3px 3px;
+    margin-top: 5px;
 }
 
 .taskItem {
     text-align: center;
     border-style: outset;
     border-color: black;
-    background-color: #007b94;
+    background-color: rgba(0, 123, 148, 0.75);
     margin-top: 2px;
+    border-radius: 3px;
 }
 .taskItem:hover {
     border-style: inset;
@@ -116,27 +148,24 @@ ol {
 .checklist {
     display: inline-block;
     width: 240px;
-    margin-left: 2px;
+    margin-left: 3px;
     height: 20px;
     padding-left: 0;
     margin-bottom: 2px;
 }
 .checklist:hover {
-    background-color: #007b94;
+    background-color: rgba(0, 123, 148, 0.75);
 }
 
 .checkbox {
     width: 20px;
     height: auto;
-    margin-top: 8px;
+    margin-top: 13px;
     float: left;
+    margin-left: 0;
 }
 
-#checklistText {
-    display: inline-block;
-    max-width: 220px;
-    height: auto;
-}
+
 
 #newProjectButton {
     width: 20px;
