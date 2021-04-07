@@ -34,14 +34,14 @@ ol {
     position: relative;
     display: inline-block;
     background-color: #007b94;
-    height: 38px;
+    height: 30px;
     width: auto;
     margin: auto;
     text-align: center;
     line-height: 38px;
     margin-top: auto;
     padding-right: 38px;
-    margin-bottom: 1px;
+    margin-bottom: 12px;
     min-width: 10px;
     max-width: 172px;
     border-style: outset;
@@ -78,6 +78,21 @@ ol {
     border-radius: 3px;
 }
 
+.newTaskButton {
+    border: solid black;
+    margin-left: 50%;
+    margin-top: 3px;
+    padding: 0;
+    line-height: 20px;
+    background-color: rgba(0, 123, 148, 0.75);
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+.newTaskButton:hover {
+    background-color: #00c8f0;
+}
+
 .task {
     display: flex;
     flex-flow: column;
@@ -104,22 +119,20 @@ ol {
     height: auto;
 }
 
-#checklistItem {
-    height: 60px;
-    display: block;
-    white-space: normal;
-    overflow-x: auto;
-    margin-top: 10px;
-}
+
 
 .addChecklistItem {
     display: inline-block;
     height: 20px;
     width: 20px;
     padding-left: 0;
-    background-color: #007b94;
+    background-color: rgba(0, 123, 148, 0.75);
     border-radius: 3px 3px 3px 3px;
     margin-top: 5px;
+    line-height: 20px;
+}
+.addChecklistItem:hover {
+    background-color: #00c8f0;
 }
 
 .removeChecklistItem  {
@@ -130,6 +143,9 @@ ol {
     background-color: rgba(146, 22, 22, 0.85);
     border-radius: 3px 3px 3px 3px;
     margin-top: 5px;
+}
+.removeChecklistItem:hover {
+    background-color: rgba(228, 78, 78, 1);
 }
 
 .taskItem {
@@ -165,7 +181,24 @@ ol {
     margin-left: 0;
 }
 
+#checklistItem {
+    height: 60px;
+    display: block;
+    white-space: normal;
+    overflow-x: auto;
+    margin-top: 10px;
+}
 
+#deleteProjectButton {
+    height: 30px;
+    background-color: rgba(146, 22, 22, 0.85);
+    width: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+#deleteProjectButton:hover {
+    background-color: rgba(228, 78, 78, 1);
+}
 
 #newProjectButton {
     width: 20px;
@@ -207,7 +240,7 @@ ol {
     display: flex;
     flex-flow: row;
     width: auto;
-    height: 80%;
+    height: 85%;
     border-color: black;
     border-style: solid;
     background-color: rgba(11, 59, 81, 0.53);
