@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("const App = (() => {\n\n    const DOM = (() => {\n\n        let elements = {\n            appContainer: document.getElementById('appContainer'),\n            navBar:  document.getElementById('navBar'),\n            newProjectButton: document.getElementById('newProjectButton'),\n            taskContainer: document.getElementById('taskContainer'),\n            tasks: {}\n        }\n\n        return elements\n    });\n\n    let projects = {}\n\n    \n});\n\nlet navBar = document.getElementById('navBar')\nlet newItem = document.createElement('ul')\nnewItem.textContent = 'newItem'\nnewItem.setAttribute('class', 'navItem')\nnavBar.appendChild(newItem)\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("const App = (() => {\n\n    const DOM = (() => {\n\n        let elements = {\n            appContainer: document.getElementById('appContainer'),\n            navBar:  document.getElementById('navBar'),\n            newProjectButton: document.getElementById('newProjectButton'),\n            taskContainer: document.getElementById('taskContainer'),\n            newTaskButton: document.getElementById('newTaskButton'),\n            tasks: {}\n        }\n\n        return elements;\n    })();\n\n    let projects = {}\n\n    return {DOM, projects}\n})();\n\nconsole.log(App.DOM['newTaskButton'])\n\nlet navBar = document.getElementById('navBar')\nlet newItem = document.createElement('ul')\nnewItem.textContent = 'newItem'\nnewItem.setAttribute('class', 'navItem')\nnavBar.appendChild(newItem)\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
 
 /***/ })
 

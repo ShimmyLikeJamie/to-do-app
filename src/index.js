@@ -7,16 +7,19 @@ const App = (() => {
             navBar:  document.getElementById('navBar'),
             newProjectButton: document.getElementById('newProjectButton'),
             taskContainer: document.getElementById('taskContainer'),
+            newTaskButton: document.getElementById('newTaskButton'),
             tasks: {}
         }
 
-        return elements
-    });
+        return elements;
+    })();
 
     let projects = {}
 
-    
-});
+    return {DOM, projects}
+})();
+
+console.log(App.DOM['newTaskButton'])
 
 let navBar = document.getElementById('navBar')
 let newItem = document.createElement('ul')
