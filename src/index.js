@@ -14,7 +14,7 @@ const App = (() => {
         return elements;
     })();
 
-    let projects = {}
+    let projects = []
     let activeProject = createProject()
 
     DOM['newTaskButton'].onclick = () => { //Adds new task onto page
@@ -42,13 +42,21 @@ const App = (() => {
         button.setAttribute('class', 'navItem')
         button.textContent = 'New Project'
         button.setAttribute('editablecontent', 'true')
+
         let tasks = {}
 
         let project = {
+            name: button.textContent,
             button: button,
             tasks: tasks
         }
+        
+        button.onclick = () => {
+            button.style.backgroundColor = '#00c8f0'
+            activeProject = project
+        }
         document.getElementById('navBar').appendChild(button)
+        projects.push(project)
         return project
     }
 
@@ -119,6 +127,7 @@ const App = (() => {
             checklistItem.setAttribute('class', 'checklistItem')
             checklistItem.id = 'checklistItem'
             checklistItem.setAttribute('contenteditable', 'true')
+            checklistItem.textContent = 'Edit me'
 
             checklistButtons.add.remove()
             checklistButtons.remove.remove()
@@ -159,6 +168,7 @@ const App = (() => {
 
         }
 
+        activeProject
         return task
     }
 
