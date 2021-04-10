@@ -21,16 +21,14 @@ const App = (() => {
         parent = DOM['newTaskButton'].parentElement
         DOM['newTaskButton'].remove()
         let task = createTask()
-        console.log(task)
         parent.appendChild(task.taskExpand)
         parent.appendChild(task.name)
         parent.appendChild(task.dueDate)
         parent.appendChild(task.priority)
         parent.appendChild(task.notes)
         parent.appendChild(task.checklist)
-        parent.appendChild(task.checklistButtons.add)
-        parent.appendChild(task.checklistButtons.remove)
-        task.checklistButtons.add.style.marginLeft = '70px'
+        task.checklist.appendChild(task.checklistButtons.add)
+        task.checklist.appendChild(task.checklistButtons.remove)
 
         let newTask = document.createElement('div')
         newTask.setAttribute('class', 'task')
@@ -50,7 +48,7 @@ const App = (() => {
             button: button,
             tasks: tasks
         }
-        
+        document.getElementById('navBar').appendChild(button)
         return project
     }
 
@@ -125,14 +123,21 @@ const App = (() => {
             checklistButtons.add.remove()
             checklistButtons.remove.remove()
 
-            checklistButtons.add.style.marginLeft = '0'
-
             checklist.appendChild(checkbox)
             checklist.appendChild(checklistItem)
 
             checklist.appendChild(checklistButtons.add)
             checklist.appendChild(checklistButtons.remove)
 
+        }
+
+        removeChecklistItem.onclick = () => {
+            let checklistItem = addChecklistItem.previousElementSibling
+            let checkbox = checklistItem.previousElementSibling
+            if (checkbox != null) {
+                checklistItem.remove()
+                checkbox.remove()        
+            }
         }
 
         let checklistButtons = {
