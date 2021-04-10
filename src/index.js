@@ -28,7 +28,9 @@ const App = (() => {
         parent.appendChild(task.priority)
         parent.appendChild(task.notes)
         parent.appendChild(task.checklist)
-        parent.appendChild(task.checklistButtons)
+        parent.appendChild(task.checklistButtons.add)
+        parent.appendChild(task.checklistButtons.remove)
+        task.checklistButtons.add.style.marginLeft = '70px'
 
         let newTask = document.createElement('div')
         newTask.setAttribute('class', 'task')
@@ -108,6 +110,31 @@ const App = (() => {
         checklist.setAttribute('id', 'checklist')
         checklist.textContent = 'Checklist'
         checklist.appendChild(document.createElement('br'))
+
+        addChecklistItem.onclick = () => {
+
+            
+            let checkbox = document.createElement('input')
+            checkbox.setAttribute('type', 'checkbox')
+            checkbox.setAttribute('class', 'checkbox')
+            let checklistItem = document.createElement('li')
+            checklistItem.setAttribute('class', 'checklistItem')
+            checklistItem.id = 'checklistItem'
+            checklistItem.setAttribute('contenteditable', 'true')
+
+            checklistButtons.add.remove()
+            checklistButtons.remove.remove()
+
+            checklistButtons.add.style.marginLeft = '0'
+
+            checklist.appendChild(checkbox)
+            checklist.appendChild(checklistItem)
+
+            checklist.appendChild(checklistButtons.add)
+            checklist.appendChild(checklistButtons.remove)
+
+        }
+
         let checklistButtons = {
             add: addChecklistItem,
             remove: removeChecklistItem
