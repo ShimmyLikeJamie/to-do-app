@@ -30,7 +30,6 @@ const App = (() => {
         
         let i = 0
         while (i < activeProject.tasks.length) {
-            console.log(activeProject.tasks[i].container)
             DOM.taskContainer.appendChild(activeProject.tasks[i].container)
             i += 1
         }
