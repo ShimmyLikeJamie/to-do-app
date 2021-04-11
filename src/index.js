@@ -9,7 +9,6 @@ const App = (() => {
             deleteProjectButton: document.getElementById('deleteProjectButton'),
             taskContainer: document.getElementById('taskContainer'),
             newTaskButton: document.getElementById('newTaskButton'),
-            tasks: {}
         }
         return elements;
     })();
@@ -17,9 +16,33 @@ const App = (() => {
     let projects = []
     let activeProject = createProject()
 
-    DOM['newTaskButton'].onclick = () => { //Adds new task onto page
-        parent = DOM['newTaskButton'].parentElement
-        DOM['newTaskButton'].remove()
+    function removeAllChildElements(element) {
+        while (element.firstChild) {
+            element.removeChild(element.firstChild)
+        }
+    }
+
+    function changeActiveProject(project) { 
+        activeProject.button.style.backgroundColor = '#007b94'
+        removeAllChildElements(DOM.taskContainer)
+        activeProject = project
+        activeProject.button.style.backgroundColor = '#00c8f0'
+        
+        let i = 0
+        while (i < activeProject.tasks.length) {
+            DOM.taskContainer.appendChild(activeProject.tasks[i].container)
+            i += 1
+        }
+        let newTask = document.createElement('div')
+        newTask.setAttribute('class', 'task')
+        newTask.appendChild(DOM.newTaskButton)
+        DOM.taskContainer.appendChild(newTask)
+
+    }
+
+    DOM.newTaskButton.onclick = () => { //Adds new task onto page
+        parent = DOM.newTaskButton.parentElement
+        DOM.newTaskButton.remove()
         let task = createTask()
         parent.appendChild(task.taskExpand)
         parent.appendChild(task.name)
@@ -36,14 +59,19 @@ const App = (() => {
         DOM.taskContainer.appendChild(newTask)
     }
 
+    DOM.newProjectButton.onclick = () => { //Creates new project and makes it the active project
+        changeActiveProject(createProject())
+    }
+
     function createProject() {
 
         let button = document.createElement('ul')
         button.setAttribute('class', 'navItem')
         button.textContent = 'New Project'
         button.setAttribute('editablecontent', 'true')
+        button.style.backgroundColor = '#00c8f0'
 
-        let tasks = {}
+        let tasks = []
 
         let project = {
             name: button.textContent,
@@ -52,8 +80,7 @@ const App = (() => {
         }
         
         button.onclick = () => {
-            button.style.backgroundColor = '#00c8f0'
-            activeProject = project
+            changeActiveProject(project)
         }
         document.getElementById('navBar').appendChild(button)
         projects.push(project)
@@ -158,6 +185,7 @@ const App = (() => {
 
         let task = {
 
+            container: DOM.newTaskButton.parentElement,
             taskExpand: taskExpand,
             name: name,
             dueDate: dueDate,
@@ -168,9 +196,8 @@ const App = (() => {
 
         }
 
-        activeProject
+        activeProject.tasks.push(task)
         return task
     }
-
-    return {DOM, projects}
+    return {createProject, createTask}
 })();

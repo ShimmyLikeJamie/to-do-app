@@ -48,6 +48,7 @@ ol {
     border-color: #7d7d7d;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 3px;
 }
 
 .name {
