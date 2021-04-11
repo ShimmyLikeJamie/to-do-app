@@ -68,7 +68,7 @@ const App = (() => {
         let button = document.createElement('ul')
         button.setAttribute('class', 'navItem')
         button.textContent = 'New Project'
-        button.setAttribute('editablecontent', 'true')
+        button.setAttribute('contenteditable', 'true')
         button.style.backgroundColor = '#00c8f0'
 
         let tasks = []
