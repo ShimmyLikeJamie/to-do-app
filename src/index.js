@@ -94,7 +94,7 @@ const App = (() => {
         //Task Expand/Collapse button
         let taskExpand = document.createElement('div')
         taskExpand.classList.add('taskItem', 'taskExpand')
-        taskExpand.textContent = '+'
+        taskExpand.textContent = '+ / -'
 
         //Name of task
         let name = document.createElement('div')
@@ -182,6 +182,17 @@ const App = (() => {
         }
         checklist.appendChild(checklistButtons.add)
         checklist.appendChild(checklistButtons.remove)
+
+        taskExpand.onclick = () => {
+            if (notes.style.display == 'none') {
+                notes.style.display = 'block'
+                checklist.style.display = 'inline-block'
+            }
+            else {
+                notes.style.display = 'none'
+                checklist.style.display = 'none'
+            }
+        }
 
         let task = {
 
