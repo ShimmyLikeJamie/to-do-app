@@ -118,7 +118,7 @@ const App = (() => {
         priority.classList.add('priority', 'taskItem')
         priority.setAttribute('id', 'priority')
         priority.textContent = 'Priority: '
-        priorityText.setAttribute('contenteditable', 'true')
+        priorityText.textContent = 'Normal'
         priority.appendChild(priorityText)
         
         //Notes of task
@@ -191,6 +191,21 @@ const App = (() => {
             else {
                 notes.style.display = 'none'
                 checklist.style.display = 'none'
+            }
+        }
+
+        priority.onclick = () => {
+            if (priorityText.textContent == 'Normal') {
+                priorityText.textContent = 'High'
+                priorityText.style.color = '#921616'
+            }
+            else if (priorityText.textContent == 'High') {
+                priorityText.textContent = 'Low'
+                priorityText.style.color = '#90e4a4'
+            }
+            else {
+                priorityText.textContent = 'Normal'
+                priorityText.style.color = '#007b94'
             }
         }
 
