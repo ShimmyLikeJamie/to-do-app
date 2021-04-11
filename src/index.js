@@ -30,6 +30,7 @@ const App = (() => {
         
         let i = 0
         while (i < activeProject.tasks.length) {
+            console.log(activeProject.tasks[i].container)
             DOM.taskContainer.appendChild(activeProject.tasks[i].container)
             i += 1
         }
@@ -42,8 +43,8 @@ const App = (() => {
 
     DOM.newTaskButton.onclick = () => { //Adds new task onto page
         parent = DOM.newTaskButton.parentElement
-        DOM.newTaskButton.remove()
         let task = createTask()
+        DOM.newTaskButton.remove()
         parent.appendChild(task.taskExpand)
         parent.appendChild(task.name)
         parent.appendChild(task.dueDate)
