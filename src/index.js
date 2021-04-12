@@ -231,7 +231,7 @@ const App = (() => {
             }
             else {
                 priorityText.textContent = 'Normal'
-                priorityText.style.color = '#007b94'
+                priorityText.style.color = '#d6d6d6'
             }
         }
 
