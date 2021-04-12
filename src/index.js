@@ -67,7 +67,7 @@ const App = (() => {
     function createProject() {
 
         let button = document.createElement('ul')
-        button.setAttribute('class', 'navItem')
+        button.classList.add('navItem', 'projectButton')
         button.textContent = 'New Project'
         button.setAttribute('contenteditable', 'true')
         button.style.backgroundColor = '#00c8f0'
@@ -120,7 +120,8 @@ const App = (() => {
         priority.classList.add('priority', 'taskItem')
         priority.setAttribute('id', 'priority')
         priority.textContent = 'Priority: '
-        priorityText.textContent = 'Normal'
+        priorityText.textContent = 'Medium'
+        priorityText.style.color = '#bdbd00'
         priority.appendChild(priorityText)
         
         //Notes of task
@@ -223,7 +224,7 @@ const App = (() => {
         }
 
         priority.onclick = () => {
-            if (priorityText.textContent == 'Normal') {
+            if (priorityText.textContent == 'Medium') {
                 priorityText.textContent = 'High'
                 priorityText.style.color = '#921616'
             }
@@ -232,8 +233,8 @@ const App = (() => {
                 priorityText.style.color = '#90e4a4'
             }
             else {
-                priorityText.textContent = 'Normal'
-                priorityText.style.color = '#d6d6d6'
+                priorityText.textContent = 'Medium'
+                priorityText.style.color = '#bdbd00'
             }
         }
 
