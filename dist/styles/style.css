@@ -272,11 +272,11 @@ ol {
 
 #banner {
     height: 30px;
-    border-color: lightslategray;
-    border-left-color: darkslategrey;
-    border-right-color: darkslategray;
+    border-color: black;
     border-style: solid;
     text-align: center;
+    color: #d6d6d6;
+    line-height: 30px;
 }
 
 #navbar {
