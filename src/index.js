@@ -138,9 +138,11 @@ const App = (() => {
         let addChecklistItem = document.createElement('div')
         let removeChecklistItem = document.createElement('div')
         addChecklistItem.setAttribute('class', 'addChecklistItem')
+        addChecklistItem.setAttribute('id', 'addChecklistItem')
         addChecklistItem.textContent = '+'
         removeChecklistItem.textContent = '-'
         removeChecklistItem.setAttribute('class', 'removeChecklistItem')
+        removeChecklistItem.setAttribute('id', 'removeChecklistItem')
         checklist.classList.add('checklist', 'taskItem')
         checklist.setAttribute('id', 'checklist')
         checklist.textContent = 'Checklist'
