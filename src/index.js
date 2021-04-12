@@ -106,11 +106,12 @@ const App = (() => {
 
         //Due date of task
         let dueDate = document.createElement('div')
-        let dueDateText = document.createElement('span')
+        let dueDateText = document.createElement('input')
+        dueDateText.setAttribute('id', 'dueDateText')
         dueDate.classList.add('dueDate', 'taskItem')
         dueDate.setAttribute('id', 'dueDate')
         dueDate.textContent = 'Due: '
-        dueDateText.setAttribute('contenteditable', 'true')
+        dueDateText.setAttribute('type', 'datetime-local')
         dueDate.appendChild(dueDateText)
 
         //Priority of task

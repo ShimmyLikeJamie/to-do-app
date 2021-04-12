@@ -58,10 +58,16 @@ ol {
     white-space: normal;
     border: solid rgba(31, 31, 31, 0.75);
 }
+#name {
+    cursor: auto;
+}
 
 .notes {
     height: 175px;
     border-radius: 3px;
+}
+#notes {
+    cursor: default;
 }
 #notes:hover {
     background-color: rgba(0, 123, 148, 0.75);
@@ -77,6 +83,7 @@ ol {
     word-wrap:break-word;
     white-space: normal;
     border-radius: 3px;
+    cursor: auto;
 }
 
 .task {
@@ -143,6 +150,7 @@ ol {
     background-color: rgba(0, 123, 148, 0.75);
     margin-top: 2px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .taskItem:hover {
     border-style: inset;
@@ -189,12 +197,34 @@ ol {
     background-color: #00c8f0;
 }
 
+#checklist {
+    cursor: default;
+}
+
 #checklistItem {
     height: 60px;
     display: block;
     white-space: normal;
     overflow-x: auto;
     margin-top: 10px;
+}
+
+#dueDate {
+    cursor: default;
+}
+#dueDate:hover {
+    background-color: rgba(0, 123, 148, 0.75);
+}
+
+#dueDateText {
+    margin-left: 0;
+    width: 204px;
+    background-color:rgba(0, 123, 148, 0.75);
+    border-color:rgba(0, 123, 148, 0.75);
+    cursor: auto;
+}
+#dueDateText:hover {
+    background-color: #00c8f0;
 }
 
 #deleteProjectButton {
