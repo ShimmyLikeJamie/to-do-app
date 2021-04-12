@@ -1,0 +1,323 @@
+html {
+    background-color: #1d2020;
+    background-image: url('../media/background.png');
+    height: 95%;
+    width: auto;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+input {
+    height: 40px;
+    width: 240px;
+    color: #d6d6d6;
+    margin-left: 6px;
+}   
+
+ul {
+    display: inline-block;
+    height: 100%;
+}
+ul:hover {
+    background-color: #00c8f0;
+}
+
+li {
+    list-style-type: none;
+}
+
+ol {
+    display: inline-block;
+}
+
+.navItem {
+    position: relative;
+    display: inline-block;
+    background-color: #007b94;
+    height: 30px;
+    width: auto;
+    margin: auto;
+    text-align: center;
+    line-height: 38px;
+    margin-top: auto;
+    padding-right: 38px;
+    margin-bottom: 12px;
+    min-width: 10px;
+    max-width: 172px;
+    border-style: outset;
+    border-color: #7d7d7d;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 3px;
+}
+
+.name {
+    line-height: 20px;
+    font-size: 20px;
+    width: auto;
+    white-space: normal;
+    border: solid rgba(31, 31, 31, 0.75);
+}
+#name {
+    cursor: default;
+}
+
+.notes {
+    height: 175px;
+    border-radius: 3px;
+}
+#notes {
+    cursor: default;
+}
+#notes:hover {
+    background-color: rgba(0, 123, 148, 0.75);
+}
+.notesText {
+    height: 85%;
+    width: 95%;
+    margin-left: 2.5%; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(0, 60, 82, 0.75);
+    text-align: left;
+    word-wrap:break-word;
+    white-space: normal;
+    border-radius: 3px;
+    cursor: auto;
+}
+
+.task {
+    display: flex;
+    flex-flow: column;
+    border-style: solid;
+    border-color: rgba(31, 31, 31, 0.75);
+    display: block;
+    height: 100%;
+    width: 250px;
+    min-width: 250px;
+    white-space: normal;
+    word-wrap: break-word;
+    margin-right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.checklistItem {
+    display: block;
+    padding-left: 0;
+    width:200px;
+    margin: 0;
+    text-align: left;
+    height: 60px;
+}
+
+
+
+.addChecklistItem {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    padding-left: 0;
+    background-color: rgba(0, 123, 148, 0.75);
+    border-radius: 3px;
+    margin-top: 20px;
+    line-height: 20px;
+    margin-left: 0;
+    text-align: center;
+    border-color: black;
+    border-width: 3px;
+}
+.addChecklistItem:hover {
+    background-color: #00c8f0;
+}
+
+.removeChecklistItem  {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin-top: 20px;
+    margin-left: 70px;
+    background-color: rgba(146, 22, 22, 0.85);
+    border-radius: 3px 3px 3px 3px;
+}
+.removeChecklistItem:hover {
+    background-color: rgba(228, 78, 78, 1);
+}
+
+.taskItem {
+    text-align: center;
+    border-style: outset;
+    border-color: black;
+    background-color: rgba(0, 123, 148, 0.75);
+    margin-top: 2px;
+    border-radius: 5px;
+    cursor: default;
+}
+.taskItem:hover {
+    border-style: inset;
+    background-color: #00c8f0;
+}
+
+.checklist {
+    display: inline-block;
+    width: 240px;
+    margin-left: 3px;
+    height: 20px;
+    padding-left: 0;
+    margin-bottom: 2px;
+}
+.checklist:hover {
+    background-color: rgba(0, 123, 148, 0.75);
+}
+
+.checkbox {
+    width: 20px;
+    height: auto;
+    margin-top: 13px;
+    float: left;
+    margin-left: 0;
+}
+
+.projectButton {
+    cursor: default;
+}
+
+#deleteTaskButton {
+    background-color: rgba(146, 22, 22, 0.85);
+}
+#deleteTaskButton:hover {
+    background-color: rgba(228, 78, 78, 1);
+}
+
+#addChecklistItem, #removeChecklistItem {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+#newTaskButton {
+    border: solid black;
+    margin-left: 112px;
+    margin-top: 3px;
+    padding: 0;
+    line-height: 20px;
+    background-color: rgba(0, 123, 148, 0.75);
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+#newTaskButton:hover {
+    background-color: #00c8f0;
+}
+
+#checklist {
+    cursor: default;
+}
+
+#checklistItem {
+    height: 60px;
+    display: block;
+    white-space: normal;
+    overflow-x: auto;
+    margin-top: 10px;
+    cursor: auto;
+}
+
+#dueDate {
+    cursor: default;
+}
+#dueDate:hover {
+    background-color: rgba(0, 123, 148, 0.75);
+}
+
+#dueDateText {
+    margin-left: 0;
+    width: 204px;
+    background-color:rgba(0, 123, 148, 0.75);
+    border-color:rgba(0, 123, 148, 0.75);
+    cursor: auto;
+}
+#dueDateText:hover {
+    background-color: #00c8f0;
+}
+
+#deleteProjectButton {
+    height: 30px;
+    background-color: rgba(146, 22, 22, 0.85);
+    width: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+#deleteProjectButton:hover {
+    background-color: rgba(228, 78, 78, 1);
+}
+
+#newProjectButton {
+    width: 20px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: 1px;
+    background-color: #007b94;
+}
+#newProjectButton:hover {
+    background-color: #00c8f0;
+}
+
+#appContainer {
+    background-color: rgba(31, 31, 31, 0.75);
+}
+
+#banner {
+    height: 30px;
+    border-color: lightslategray;
+    border-left-color: darkslategrey;
+    border-right-color: darkslategray;
+    border-style: solid;
+    text-align: center;
+}
+
+#navbar {
+    width: auto;
+    height: 50px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(11, 59, 81, 0.53);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-right: 0;
+}
+
+#taskContainer {
+    display: flex;
+    flex-flow: row;
+    width: auto;
+    height: 85%;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(11, 59, 81, 0.53);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-right: 0;
+    color: #d6d6d6;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+background: #292929; 
+}
+
+::-webkit-scrollbar-thumb {
+background: #555; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #949494; 
+}
