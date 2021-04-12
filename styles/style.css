@@ -169,6 +169,10 @@ ol {
     margin-left: 0;
 }
 
+#deleteTaskButton {
+    background-color: rgba(146, 22, 22, 0.85);
+}
+
 #newTaskButton {
     border: solid black;
     margin-left: 112px;

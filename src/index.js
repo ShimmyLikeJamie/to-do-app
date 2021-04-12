@@ -41,7 +41,7 @@ const App = (() => {
     }
 
     DOM.newTaskButton.onclick = () => { //Adds new task onto page
-        parent = DOM.newTaskButton.parentElement
+        parent = DOM.newTaskButton.parentElement //Parent is taskContainer
         let task = createTask()
         DOM.newTaskButton.remove()
         parent.appendChild(task.taskExpand)
@@ -52,6 +52,7 @@ const App = (() => {
         parent.appendChild(task.checklist)
         task.checklist.appendChild(task.checklistButtons.add)
         task.checklist.appendChild(task.checklistButtons.remove)
+        parent.appendChild(task.deleteTaskButton)
 
         let newTask = document.createElement('div')
         newTask.setAttribute('class', 'task')
@@ -144,6 +145,28 @@ const App = (() => {
         checklist.textContent = 'Checklist'
         checklist.appendChild(document.createElement('br'))
 
+        //Delete button of task
+        let deleteTaskButton = document.createElement('div')
+        deleteTaskButton.setAttribute('class', 'taskItem')
+        deleteTaskButton.setAttribute('id', 'deleteTaskButton')
+        deleteTaskButton.textContent = 'Delete'
+        deleteTaskButton.style.display = 'none'
+
+        deleteTaskButton.onclick = () => {
+            task.container.remove()
+
+            let i = 0
+
+            while (i < activeProject.tasks.length) {
+                if (activeProject.tasks[i] === task) {
+                    activeProject.tasks.splice(i, 1)
+                    break
+                }
+                i += 1
+            }
+        }
+        
+
         addChecklistItem.onclick = () => {
 
             
@@ -184,13 +207,15 @@ const App = (() => {
         checklist.appendChild(checklistButtons.remove)
 
         taskExpand.onclick = () => {
-            if (notes.style.display == 'none') {
+            if (notes.style.display == 'none') { //What to do if task is hidden
                 notes.style.display = 'block'
                 checklist.style.display = 'inline-block'
+                deleteTaskButton.style.display = 'none'
             }
-            else {
+            else { //What to do if it's already expanded
                 notes.style.display = 'none'
                 checklist.style.display = 'none'
+                deleteTaskButton.style.display = 'block'
             }
         }
 
@@ -218,8 +243,8 @@ const App = (() => {
             priority: priority,
             notes: notes,
             checklist: checklist,
-            checklistButtons: checklistButtons
-
+            checklistButtons: checklistButtons,
+            deleteTaskButton: deleteTaskButton
         }
 
         activeProject.tasks.push(task)
