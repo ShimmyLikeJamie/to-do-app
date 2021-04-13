@@ -183,6 +183,15 @@ ol {
     cursor: default;
 }
 
+#completeTaskButton {
+    background-color: #1c750b;
+}
+#completeTaskButton:hover {
+    background-color: #32cd13;
+}
+
+
+
 #deleteTaskButton {
     background-color: rgba(146, 22, 22, 0.85);
 }

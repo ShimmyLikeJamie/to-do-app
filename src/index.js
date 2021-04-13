@@ -9,6 +9,7 @@ const App = (() => {
             deleteProjectButton: document.getElementById('deleteProjectButton'),
             taskContainer: document.getElementById('taskContainer'),
             newTaskButton: document.getElementById('newTaskButton'),
+            showCompletedTasksButton: document.getElementById('showCompletedTasksButton')
         }
         return elements;
     })();
@@ -52,6 +53,7 @@ const App = (() => {
         parent.appendChild(task.checklist)
         task.checklist.appendChild(task.checklistButtons.add)
         task.checklist.appendChild(task.checklistButtons.remove)
+        parent.appendChild(task.completeTaskButton)
         parent.appendChild(task.deleteTaskButton)
 
         let newTask = document.createElement('div')
@@ -77,11 +79,15 @@ const App = (() => {
         button.style.backgroundColor = '#00c8f0'
 
         let tasks = []
+        let completedTasks = []
+        let completedTasksCount = 0
 
         let project = {
             name: button.textContent,
             button: button,
-            tasks: tasks
+            tasks: tasks,
+            completedTasks,
+            completedTasksCount
         }
         
         button.onclick = () => { 
@@ -174,6 +180,28 @@ const App = (() => {
             }
         }
         
+        //Complete button of task
+        let completeTaskButton = document.createElement('div')
+        completeTaskButton.setAttribute('class', 'taskItem')
+        completeTaskButton.setAttribute('id', 'completeTaskButton')
+        completeTaskButton.textContent = 'Complete'
+        completeTaskButton.style.display = 'none'
+
+        completeTaskButton.onclick = () => {
+            task.container.remove()
+
+            let i = 0
+
+            while (i < activeProject.tasks.length) {
+                if (activeProject.tasks[i] === task) {
+                    activeProject.completedTasks.push(activeProject.tasks[i])
+                    activeProject.completedTasksCount += 1
+                    activeProject.tasks.splice(i, 1)
+                    break
+                }
+                i += 1
+            }
+        }
 
         addChecklistItem.onclick = () => {
 
@@ -219,11 +247,13 @@ const App = (() => {
                 notes.style.display = 'block'
                 checklist.style.display = 'inline-block'
                 deleteTaskButton.style.display = 'none'
+                completeTaskButton.style.display = 'none'
             }
             else { //What to do if it's already expanded
                 notes.style.display = 'none'
                 checklist.style.display = 'none'
                 deleteTaskButton.style.display = 'block'
+                completeTaskButton.style.display = 'block'
             }
         }
 
@@ -234,7 +264,7 @@ const App = (() => {
             }
             else if (priorityText.textContent == 'High') {
                 priorityText.textContent = 'Low'
-                priorityText.style.color = '#90e4a4'
+                priorityText.style.color = '#32cd13'
             }
             else {
                 priorityText.textContent = 'Medium'
@@ -252,7 +282,8 @@ const App = (() => {
             notes: notes,
             checklist: checklist,
             checklistButtons: checklistButtons,
-            deleteTaskButton: deleteTaskButton
+            deleteTaskButton: deleteTaskButton,
+            completeTaskButton: completeTaskButton
         }
 
         activeProject.tasks.push(task)
