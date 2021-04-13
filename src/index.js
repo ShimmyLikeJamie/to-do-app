@@ -63,6 +63,10 @@ const App = (() => {
     DOM.newProjectButton.onclick = () => { //Creates new project and makes it the active project
         changeActiveProject(createProject())
     }
+    DOM.deleteProjectButton.onclick = () => { //Deletes active project
+        activeProject.button.remove()
+        removeAllChildElements(DOM.taskContainer)
+    }
 
     function createProject() {
 
@@ -80,7 +84,7 @@ const App = (() => {
             tasks: tasks
         }
         
-        button.onclick = () => {
+        button.onclick = () => { 
             changeActiveProject(project)
         }
         document.getElementById('navBar').appendChild(button)
