@@ -23,22 +23,29 @@ const App = (() => {
         }
     }
 
+    function displayTasks() {
+        let i = 0
+        while (i < activeProject.tasks.length) {
+            DOM.taskContainer.appendChild(activeProject.tasks[i].container)
+            i += 1
+        }
+    }
+
+    function displayNewTaskButton() {
+        let newTask = document.createElement('div')
+        newTask.setAttribute('class', 'task')
+        newTask.appendChild(DOM.newTaskButton)
+        DOM.taskContainer.appendChild(newTask)
+    }
+
     function changeActiveProject(project) { 
         activeProject.button.style.backgroundColor = '#007b94'
         removeAllChildElements(DOM.taskContainer)
         activeProject = project
         activeProject.button.style.backgroundColor = '#00c8f0'
         
-        let i = 0
-        while (i < activeProject.tasks.length) {
-            DOM.taskContainer.appendChild(activeProject.tasks[i].container)
-            i += 1
-        }
-        let newTask = document.createElement('div')
-        newTask.setAttribute('class', 'task')
-        newTask.appendChild(DOM.newTaskButton)
-        DOM.taskContainer.appendChild(newTask)
-
+        displayTasks()
+        displayNewTaskButton()
     }
 
     DOM.newTaskButton.onclick = () => { //Adds new task onto page
@@ -70,6 +77,27 @@ const App = (() => {
         removeAllChildElements(DOM.taskContainer)
     }
 
+    DOM.showCompletedTasksButton.onclick = () => { //Shows completed tasks in active project
+            removeAllChildElements(DOM.taskContainer)
+            let i = 0
+            while (i < activeProject.completedTasks.length) {
+                let task = document.createElement('div')
+                task.setAttribute('class', 'task')
+                DOM.taskContainer.appendChild(task)
+
+                let completedTask = activeProject.completedTasks[i]
+                task.appendChild(completedTask.name)
+                task.appendChild(completedTask.dueDate)
+                task.appendChild(completedTask.notes)
+                completedTask.notes.style.display = 'block'
+                task.appendChild(completedTask.checklist)
+                completedTask.checklist.style.display = 'inline-block'
+                completedTask.checklistButtons.add.style.display = 'none'
+                completedTask.checklistButtons.remove.style.display = 'none'
+                i += 1
+            }
+    }
+
     function createProject() {
 
         let button = document.createElement('ul')
@@ -86,8 +114,8 @@ const App = (() => {
             name: button.textContent,
             button: button,
             tasks: tasks,
-            completedTasks,
-            completedTasksCount
+            completedTasks: completedTasks,
+            completedTasksCount: completedTasksCount
         }
         
         button.onclick = () => { 

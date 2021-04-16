@@ -190,6 +190,12 @@ ol {
     background-color: #32cd13;
 }
 
+#showCompletedTasksButton {
+    width: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 
 
 #deleteTaskButton {
