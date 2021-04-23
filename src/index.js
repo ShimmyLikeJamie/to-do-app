@@ -1,5 +1,15 @@
 const App = (() => {
 
+    let storage = window.localStorage
+
+    let activeProject = null
+
+    function removeAllChildElements(element) {
+        while (element.firstChild) {
+            element.removeChild(element.firstChild)
+        }
+    }
+
     const DOM = (() => {
 
         let elements = {
@@ -11,311 +21,270 @@ const App = (() => {
             newTaskButton: document.getElementById('newTaskButton'),
             showCompletedTasksButton: document.getElementById('showCompletedTasksButton')
         }
-        return elements;
-    })();
 
-    let projects = []
-    let activeProject = createProject()
-
-    function removeAllChildElements(element) {
-        while (element.firstChild) {
-            element.removeChild(element.firstChild)
-        }
-    }
-
-    function displayTasks() {
-        let i = 0
-        while (i < activeProject.tasks.length) {
-            DOM.taskContainer.appendChild(activeProject.tasks[i].container)
-            i += 1
-        }
-    }
-
-    function displayNewTaskButton() {
-        let newTask = document.createElement('div')
-        newTask.setAttribute('class', 'task')
-        newTask.appendChild(DOM.newTaskButton)
-        DOM.taskContainer.appendChild(newTask)
-    }
-
-    function changeActiveProject(project) { 
-        activeProject.button.style.backgroundColor = '#007b94'
-        removeAllChildElements(DOM.taskContainer)
-        activeProject = project
-        activeProject.button.style.backgroundColor = '#00c8f0'
-        
-        displayTasks()
-        displayNewTaskButton()
-    }
-
-    DOM.newTaskButton.onclick = () => { //Adds new task onto page
-        parent = DOM.newTaskButton.parentElement //Parent is taskContainer
-        let task = createTask()
-        DOM.newTaskButton.remove()
-        parent.appendChild(task.taskExpand)
-        parent.appendChild(task.name)
-        parent.appendChild(task.dueDate)
-        parent.appendChild(task.priority)
-        parent.appendChild(task.notes)
-        parent.appendChild(task.checklist)
-        task.checklist.appendChild(task.checklistButtons.add)
-        task.checklist.appendChild(task.checklistButtons.remove)
-        parent.appendChild(task.completeTaskButton)
-        parent.appendChild(task.deleteTaskButton)
-
-        let newTask = document.createElement('div')
-        newTask.setAttribute('class', 'task')
-        newTask.appendChild(DOM.newTaskButton)
-        DOM.taskContainer.appendChild(newTask)
-    }
-
-    DOM.newProjectButton.onclick = () => { //Creates new project and makes it the active project
-        changeActiveProject(createProject())
-    }
-    DOM.deleteProjectButton.onclick = () => { //Deletes active project
-        activeProject.button.remove()
-        removeAllChildElements(DOM.taskContainer)
-    }
-
-    DOM.showCompletedTasksButton.onclick = () => { //Shows completed tasks in active project
-            removeAllChildElements(DOM.taskContainer)
-            let i = 0
-            while (i < activeProject.completedTasks.length) {
-                let task = document.createElement('div')
-                task.setAttribute('class', 'task')
-                DOM.taskContainer.appendChild(task)
-
-                let completedTask = activeProject.completedTasks[i]
-                task.appendChild(completedTask.name)
-                task.appendChild(completedTask.dueDate)
-                task.appendChild(completedTask.notes)
-                completedTask.notes.style.display = 'block'
-                task.appendChild(completedTask.checklist)
-                completedTask.checklist.style.display = 'inline-block'
-                completedTask.checklistButtons.add.style.display = 'none'
-                completedTask.checklistButtons.remove.style.display = 'none'
-                i += 1
+        function determinePriorityColor(priorityText) {
+            if (priorityText === 'Medium') {
+                return '#bdbd00'
             }
-    }
-
-    function createProject() {
-
-        let button = document.createElement('ul')
-        button.classList.add('navItem', 'projectButton')
-        button.textContent = 'New Project'
-        button.setAttribute('contenteditable', 'true')
-        button.style.backgroundColor = '#00c8f0'
-
-        let tasks = []
-        let completedTasks = []
-        let completedTasksCount = 0
-
-        let project = {
-            name: button.textContent,
-            button: button,
-            tasks: tasks,
-            completedTasks: completedTasks,
-            completedTasksCount: completedTasksCount
-        }
-        
-        button.onclick = () => { 
-            changeActiveProject(project)
-        }
-        document.getElementById('navBar').appendChild(button)
-        projects.push(project)
-        return project
-    }
-
-    function createTask() {
-
-        //Create elements and set attributes
-
-        //Task Expand/Collapse button
-        let taskExpand = document.createElement('div')
-        taskExpand.classList.add('taskItem', 'taskExpand')
-        taskExpand.textContent = '+ / -'
-
-        //Name of task
-        let name = document.createElement('div')
-        name.setAttribute('contenteditable', 'true')
-        name.classList.add('name', 'taskItem')
-        name.setAttribute('id', 'name')
-        name.textContent = 'Task Name'
-
-        //Due date of task
-        let dueDate = document.createElement('div')
-        let dueDateText = document.createElement('input')
-        dueDateText.setAttribute('id', 'dueDateText')
-        dueDate.classList.add('dueDate', 'taskItem')
-        dueDate.setAttribute('id', 'dueDate')
-        dueDate.textContent = 'Due: '
-        dueDateText.setAttribute('type', 'datetime-local')
-        dueDate.appendChild(dueDateText)
-
-        //Priority of task
-        let priority = document.createElement('div')
-        let priorityText = document.createElement('span')
-        priority.classList.add('priority', 'taskItem')
-        priority.setAttribute('id', 'priority')
-        priority.textContent = 'Priority: '
-        priorityText.textContent = 'Medium'
-        priorityText.style.color = '#bdbd00'
-        priority.appendChild(priorityText)
-        
-        //Notes of task
-        let notes = document.createElement('div')
-        let notesText = document.createElement('div')
-        notes.classList.add('taskItem', 'notes')
-        notes.setAttribute('id', 'notes')
-        notes.textContent = 'Notes'
-        notesText.setAttribute('contenteditable', 'true')
-        notesText.setAttribute('class', 'notesText')
-        notes.appendChild(notesText)
-
-        //Checklist of task
-        let checklist = document.createElement('ol')
-        let addChecklistItem = document.createElement('div')
-        let removeChecklistItem = document.createElement('div')
-        addChecklistItem.setAttribute('class', 'addChecklistItem')
-        addChecklistItem.setAttribute('id', 'addChecklistItem')
-        addChecklistItem.textContent = '+'
-        removeChecklistItem.textContent = '-'
-        removeChecklistItem.setAttribute('class', 'removeChecklistItem')
-        removeChecklistItem.setAttribute('id', 'removeChecklistItem')
-        checklist.classList.add('checklist', 'taskItem')
-        checklist.setAttribute('id', 'checklist')
-        checklist.textContent = 'Checklist'
-        checklist.appendChild(document.createElement('br'))
-
-        //Delete button of task
-        let deleteTaskButton = document.createElement('div')
-        deleteTaskButton.setAttribute('class', 'taskItem')
-        deleteTaskButton.setAttribute('id', 'deleteTaskButton')
-        deleteTaskButton.textContent = 'Delete'
-        deleteTaskButton.style.display = 'none'
-
-        deleteTaskButton.onclick = () => {
-            task.container.remove()
-
-            let i = 0
-
-            while (i < activeProject.tasks.length) {
-                if (activeProject.tasks[i] === task) {
-                    activeProject.tasks.splice(i, 1)
-                    break
-                }
-                i += 1
+            else if (priorityText === 'High') {
+                return '#921616'
             }
-        }
-        
-        //Complete button of task
-        let completeTaskButton = document.createElement('div')
-        completeTaskButton.setAttribute('class', 'taskItem')
-        completeTaskButton.setAttribute('id', 'completeTaskButton')
-        completeTaskButton.textContent = 'Complete'
-        completeTaskButton.style.display = 'none'
-
-        completeTaskButton.onclick = () => {
-            task.container.remove()
-
-            let i = 0
-
-            while (i < activeProject.tasks.length) {
-                if (activeProject.tasks[i] === task) {
-                    activeProject.completedTasks.push(activeProject.tasks[i])
-                    activeProject.completedTasksCount += 1
-                    activeProject.tasks.splice(i, 1)
-                    break
-                }
-                i += 1
+            else {
+                return '#32cd13'
             }
         }
 
-        addChecklistItem.onclick = () => {
-
-            
+        function createCheckbox() {
             let checkbox = document.createElement('input')
             checkbox.setAttribute('type', 'checkbox')
             checkbox.setAttribute('class', 'checkbox')
+            return checkbox
+        }
+
+        function createChecklistItem(text = '') {
+
             let checklistItem = document.createElement('li')
             checklistItem.setAttribute('class', 'checklistItem')
             checklistItem.id = 'checklistItem'
             checklistItem.setAttribute('contenteditable', 'true')
-            checklistItem.textContent = 'Edit me'
-
-            checklistButtons.add.remove()
-            checklistButtons.remove.remove()
-
-            checklist.appendChild(checkbox)
-            checklist.appendChild(checklistItem)
-
-            checklist.appendChild(checklistButtons.add)
-            checklist.appendChild(checklistButtons.remove)
-
+            checklistItem.textContent = text
+            return checklistItem
         }
 
-        removeChecklistItem.onclick = () => {
-            let checklistItem = addChecklistItem.previousElementSibling
-            let checkbox = checklistItem.previousElementSibling
-            if (checkbox != null) {
-                checklistItem.remove()
-                checkbox.remove()        
+        function createProject(name, tasks, completedTasks, completedTasksCount) {
+            let button = document.createElement('ul')
+            button.classList.add('navItem', 'projectButton')
+            button.textContent = name
+            button.setAttribute('contenteditable', 'true')
+            button.style.backgroundColor = '#00c8f0'
+
+            //Button changes active project, color and displays project tasks upon clicking
+            button.onclick = () => {
+                if (!(activeProject) === null) {
+                    activeProject.button.style.backgroundColor = '#007b94'
+                }
+                activeProject = {button, tasks, completedTasks, completedTasksCount}
+                button.style.color.backgroundColor = '#00c8f0'
+
+                removeAllChildElements(DOM.taskContainer)
+
+                for (let key in tasks) {
+                    let task = tasks[key]
+                    DOM.taskContainer.appendChild(createTask(task.name, task.dueDate, task.priority, task.notes, task.checklist))
+                }
             }
+
+            DOM.elements.navBar.appendChild(button)
         }
 
-        let checklistButtons = {
-            add: addChecklistItem,
-            remove: removeChecklistItem
+        function createTask(task) {
+
+            let container = elements.taskContainer
+            
+            //Create elements, set attributes and append them to container
+
+            let parent = document.createElement('div')
+            parent.setAttribute('class', 'task')
+
+            //Task Expand/Collapse button
+            let taskExpand = document.createElement('div')
+            taskExpand.classList.add('taskItem', 'taskExpand')
+            taskExpand.textContent = '+ / -'
+            //Task expand/collapse functionality
+            taskExpand.onclick = () => {
+                if (notesDiv.style.display == 'none') { //What to do if task is hidden
+                    notesDiv.style.display = 'block'
+                    checklistDiv.style.display = 'inline-block'
+                    deleteTaskButton.style.display = 'none'
+                    completeTaskButton.style.display = 'none'
+                }
+                else { //What to do if it's already expanded
+                    notesDiv.style.display = 'none'
+                    checklistDiv.style.display = 'none'
+                    deleteTaskButton.style.display = 'block'
+                    completeTaskButton.style.display = 'block'
+                }
+            }
+
+            //Name
+            let nameDiv = document.createElement('div')
+            nameDiv.setAttribute('contenteditable', 'true')
+            nameDiv.classList.add('name', 'taskItem')
+            nameDiv.setAttribute('id', 'name')
+            nameDiv.textContent = task.name
+
+            //Due date
+            let dueDateDiv = document.createElement('div')
+            let dueDateText = document.createElement('input')
+            dueDateText.setAttribute('id', 'dueDateText')
+            dueDateDiv.classList.add('dueDate', 'taskItem')
+            dueDateDiv.setAttribute('id', 'dueDate')
+            dueDateDiv.textContent = 'Due: '
+            dueDateText.setAttribute('type', 'datetime-local')
+            dueDateText.value = task.dueDate
+            dueDateDiv.appendChild(dueDateText)
+
+            //Priority
+            let priorityDiv = document.createElement('div')
+            let priorityText = document.createElement('span')
+            priorityDiv.classList.add('priority', 'taskItem')
+            priorityDiv.setAttribute('id', 'priority')
+            priorityDiv.textContent = 'Priority: '
+            priorityText.textContent = task.priority
+            priorityText.style.color = determinePriorityColor(task.priority)
+            priorityDiv.appendChild(priorityText)
+            //Functionality for priority text
+            priorityDiv.onclick = () => {
+                if (priorityText.textContent == 'Medium') {
+                    priorityText.textContent = 'High'
+                    priorityText.style.color = '#921616'
+                }
+                else if (priorityText.textContent == 'High') {
+                    priorityText.textContent = 'Low'
+                    priorityText.style.color = '#32cd13'
+                }
+                else {
+                    priorityText.textContent = 'Medium'
+                    priorityText.style.color = '#bdbd00'
+                }
+            }
+
+            //Notes
+            let notesDiv = document.createElement('div')
+            let notesText = document.createElement('div')
+            notesDiv.classList.add('taskItem', 'notes')
+            notesDiv.setAttribute('id', 'notes')
+            notesDiv.textContent = 'Notes'
+            notesText.setAttribute('contenteditable', 'true')
+            notesText.setAttribute('class', 'notesText')
+            notesText.textContent = task.notes
+            notesDiv.appendChild(notesText)
+
+            //Checklist
+            let checklistDiv = document.createElement('ol')
+            checklistDiv.classList.add('checklist', 'taskItem')
+            checklistDiv.setAttribute('id', 'checklist')
+            checklistDiv.textContent = 'Checklist'
+            checklistDiv.appendChild(document.createElement('br'))
+
+            //Checklist buttons
+            let addChecklistItem = document.createElement('div')
+            let removeChecklistItem = document.createElement('div')
+            addChecklistItem.setAttribute('class', 'addChecklistItem')
+            addChecklistItem.setAttribute('id', 'addChecklistItem')
+            addChecklistItem.textContent = '+'
+            removeChecklistItem.textContent = '-'
+            removeChecklistItem.setAttribute('class', 'removeChecklistItem')
+            removeChecklistItem.setAttribute('id', 'removeChecklistItem')
+
+            //Functionality for checklist buttons
+            addChecklistItem.onclick = () => {
+                addChecklistItem.previousSibling.appendChild(createCheckbox())
+                addChecklistItem.previousSibling.appendChild(createChecklistItem())
+            }
+            removeChecklistItem.onclick = () => {
+                let checklist = addChecklistItem.previousElementSibling
+                let lastItem = checklist.lastChild
+                if (lastItem != null && lastItem.nodeName != 'BR') {
+                    lastItem.previousSibling.remove()
+                    lastItem.remove() 
+                }
+            }
+            //Append checklist items (if they exist)
+            for (let item in task.checklist) {
+                checklistDiv.appendChild(createCheckbox())
+                checklistDiv.appendChild(createChecklistItem(task.checklist[item]))
+            }
+
+            //Complete task button
+            let completeTaskButton = document.createElement('div')
+            completeTaskButton.setAttribute('class', 'taskItem')
+            completeTaskButton.setAttribute('id', 'completeTaskButton')
+            completeTaskButton.textContent = 'Complete'
+            completeTaskButton.style.display = 'none'
+            
+            completeTaskButton.onclick = () => {
+                for (let task in activeProject.tasks) {
+                    if (activeProject.tasks[task].name === nameDiv.textContent) {
+                        activeProject.completedTasks[activeProject.completedTasksCount] = activeProject.tasks[task]
+                        activeProject.completedTasksCount += 1
+                        parent.remove()
+                        break
+                    }
+                }
+            }
+
+            //Delete task button
+            let deleteTaskButton = document.createElement('div')
+            deleteTaskButton.setAttribute('class', 'taskItem')
+            deleteTaskButton.setAttribute('id', 'deleteTaskButton')
+            deleteTaskButton.textContent = 'Delete'
+            deleteTaskButton.style.display = 'none'
+
+            deleteTaskButton.onclick = () => {
+                parent.remove()
+            }
+
+            //Append parent to task container, then task elements to parent
+            container.appendChild(parent)
+            parent.appendChild(taskExpand)
+            parent.appendChild(nameDiv)
+            parent.appendChild(dueDateDiv)
+            parent.appendChild(priorityDiv)
+            parent.appendChild(notesDiv)
+            parent.appendChild(checklistDiv)
+            parent.appendChild(addChecklistItem)
+            parent.appendChild(removeChecklistItem)
+            parent.appendChild(completeTaskButton)
+            parent.appendChild(deleteTaskButton)
+
+            return {taskExpand, completeTaskButton, deleteTaskButton, addChecklistItem, removeChecklistItem}
         }
-        checklist.appendChild(checklistButtons.add)
-        checklist.appendChild(checklistButtons.remove)
 
-        taskExpand.onclick = () => {
-            if (notes.style.display == 'none') { //What to do if task is hidden
-                notes.style.display = 'block'
-                checklist.style.display = 'inline-block'
-                deleteTaskButton.style.display = 'none'
-                completeTaskButton.style.display = 'none'
-            }
-            else { //What to do if it's already expanded
-                notes.style.display = 'none'
-                checklist.style.display = 'none'
-                deleteTaskButton.style.display = 'block'
-                completeTaskButton.style.display = 'block'
-            }
-        }
+        return {elements, createTask, createProject};
+    })();
 
-        priority.onclick = () => {
-            if (priorityText.textContent == 'Medium') {
-                priorityText.textContent = 'High'
-                priorityText.style.color = '#921616'
-            }
-            else if (priorityText.textContent == 'High') {
-                priorityText.textContent = 'Low'
-                priorityText.style.color = '#32cd13'
-            }
-            else {
-                priorityText.textContent = 'Medium'
-                priorityText.style.color = '#bdbd00'
-            }
-        }
-
-        let task = {
-
-            container: DOM.newTaskButton.parentElement,
-            taskExpand: taskExpand,
-            name: name,
-            dueDate: dueDate,
-            priority: priority,
-            notes: notes,
-            checklist: checklist,
-            checklistButtons: checklistButtons,
-            deleteTaskButton: deleteTaskButton,
-            completeTaskButton: completeTaskButton
-        }
-
-        activeProject.tasks.push(task)
-        return task
+    function createProject(name = 'New Project', tasks = {}, completedTasks = {}, completedTasksCount = 0) {
+        return {name, tasks, completedTasks, completedTasksCount};
     }
-    return {createProject, createTask}
+
+    function createTask(name = 'New Task', dueDate = "", priority = 'Medium', notes = '', checklist = {}) {
+        return {
+            name,
+            dueDate,
+            priority,
+            notes,
+            checklist
+        }
+    }
+
+    DOM.elements.newProjectButton.onclick = () => { DOM.createProject(createProject()) }
+
+    DOM.elements.deleteProjectButton.onclick = () => {
+        removeAllChildElements(DOM.elements.taskContainer)
+        activeProject.button.remove()
+        activeProject = null
+    }
+
+    DOM.elements.newTaskButton.onclick = () => { 
+        DOM.elements.newTaskButton.parentElement.remove()
+        DOM.elements.newTaskButton.remove()
+        DOM.createTask(createTask())
+        let newTaskContainer = document.createElement('div')
+        newTaskContainer.setAttribute('class', 'task')
+        newTaskContainer.appendChild(DOM.elements.newTaskButton)
+        DOM.elements.taskContainer.appendChild(newTaskContainer)
+    }
+
+    DOM.elements.showCompletedTasksButton.onclick = () => {
+        removeAllChildElements(DOM.elements.taskContainer)
+        for (let task in activeProject.completedTasks) {
+            let elements = DOM.createTask(activeProject.completedTasks[task])
+            elements.taskExpand.style.display = 'none'
+            elements.completeTaskButton.style.display = 'none'
+            elements.deleteTaskButton.style.display = 'none'
+            elements.addChecklistItem.style.display = 'none'
+            elements.removeChecklistItem.style.display = 'none'
+        }
+    }
 })();

@@ -115,7 +115,9 @@ ol {
 
 
 .addChecklistItem {
-    display: inline-block;
+    display: block;
+    position: relative;
+    transform: translate(3px, -46px);
     height: 20px;
     width: 20px;
     padding-left: 0;
@@ -126,20 +128,23 @@ ol {
     margin-left: 0;
     text-align: center;
     border-color: black;
-    border-width: 3px;
+    border-width: 2px;
 }
 .addChecklistItem:hover {
     background-color: #00c8f0;
 }
 
 .removeChecklistItem  {
-    display: inline-block;
+    display: block;
+    position: relative;
+    transform: translate(-45px, -90px);
     height: 20px;
     width: 20px;
     margin-top: 20px;
     margin-left: 70px;
     background-color: rgba(146, 22, 22, 0.85);
     border-radius: 3px 3px 3px 3px;
+    text-align: center;
 }
 .removeChecklistItem:hover {
     background-color: rgba(228, 78, 78, 1);
