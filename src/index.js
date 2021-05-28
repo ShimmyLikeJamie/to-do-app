@@ -53,10 +53,16 @@ const App = (() => {
 
             removeAllChildElements(elements.taskContainer)
 
-            for (let key in project.tasks) {
-                let task = project.tasks[key]
-                elements.taskContainer.appendChild(createTask(task.name, task.dueDate, task.priority, task.notes, task.checklist))
+            let i = 0
+            while (i < project.tasks.length) {
+                DOM.createTask(project.tasks[i])
+                i += 1
             }
+            
+            let container = document.createElement('div')
+            container.setAttribute('class', 'task')
+            elements.taskContainer.appendChild(container)
+            container.appendChild(elements.newTaskButton)
         }
 
         function createProject(project) {
@@ -80,6 +86,7 @@ const App = (() => {
 
             DOM.elements.navBar.appendChild(button)
         }
+
 
         function createTask(task) {
 
@@ -110,12 +117,17 @@ const App = (() => {
                 }
             }
 
+
             //Name
-            let nameDiv = document.createElement('div')
-            nameDiv.setAttribute('contenteditable', 'true')
-            nameDiv.classList.add('name', 'taskItem')
-            nameDiv.setAttribute('id', 'name')
-            nameDiv.textContent = task.name
+            let nameInput = document.createElement('input')
+            nameInput.setAttribute('type', 'text')
+            nameInput.setAttribute('contenteditable', 'true')
+            nameInput.classList.add('name', 'taskItem')
+            nameInput.setAttribute('id', 'name')
+            nameInput.textContent = task.name
+            nameInput.onchange = function() {
+                console.log('test')
+            }
 
             //Due date
             let dueDateDiv = document.createElement('div')
@@ -209,7 +221,7 @@ const App = (() => {
             
             completeTaskButton.onclick = () => {
                 for (let task in activeProject.tasks) {
-                    if (activeProject.tasks[task].name === nameDiv.textContent) {
+                    if (activeProject.tasks[task].name === nameInput.textContent) {
                         activeProject.completedTasks[activeProject.completedTasksCount] = activeProject.tasks[task]
                         activeProject.completedTasksCount += 1
                         parent.remove()
@@ -232,7 +244,7 @@ const App = (() => {
             //Append parent to task container, then task elements to parent
             container.appendChild(parent)
             parent.appendChild(taskExpand)
-            parent.appendChild(nameDiv)
+            parent.appendChild(nameInput)
             parent.appendChild(dueDateDiv)
             parent.appendChild(priorityDiv)
             parent.appendChild(notesDiv)
@@ -248,7 +260,7 @@ const App = (() => {
         return {elements, createTask, createProject};
     })();
 
-    function createProject(name = 'New Project', tasks = {}, completedTasks = {}, completedTasksCount = 0, button = null) {
+    function createProject(name = 'New Project', tasks = [], completedTasks = [], completedTasksCount = 0, button = null) {
         return {name, tasks, completedTasks, completedTasksCount, button};
     }
 
@@ -273,7 +285,9 @@ const App = (() => {
     DOM.elements.newTaskButton.onclick = () => { 
         DOM.elements.newTaskButton.parentElement.remove()
         DOM.elements.newTaskButton.remove()
-        DOM.createTask(createTask())
+        let newTask = createTask()
+        activeProject.tasks.push(newTask)
+        DOM.createTask(newTask)
         let newTaskContainer = document.createElement('div')
         newTaskContainer.setAttribute('class', 'task')
         newTaskContainer.appendChild(DOM.elements.newTaskButton)
