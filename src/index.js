@@ -2,8 +2,6 @@ const App = (() => {
 
     let storage = window.localStorage
 
-    let activeProject = null
-
     function removeAllChildElements(element) {
         while (element.firstChild) {
             element.removeChild(element.firstChild)
@@ -41,7 +39,7 @@ const App = (() => {
             return checkbox
         }
 
-        function createChecklistItem(text = '') {
+        function createChecklistItem(text = 'New Item') {
 
             let checklistItem = document.createElement('li')
             checklistItem.setAttribute('class', 'checklistItem')
@@ -51,27 +49,33 @@ const App = (() => {
             return checklistItem
         }
 
-        function createProject(name, tasks, completedTasks, completedTasksCount) {
+        function loadTasks(project) {
+
+            removeAllChildElements(elements.taskContainer)
+
+            for (let key in project.tasks) {
+                let task = project.tasks[key]
+                elements.taskContainer.appendChild(createTask(task.name, task.dueDate, task.priority, task.notes, task.checklist))
+            }
+        }
+
+        function createProject(project) {
             let button = document.createElement('ul')
             button.classList.add('navItem', 'projectButton')
-            button.textContent = name
+            button.textContent = project.name
             button.setAttribute('contenteditable', 'true')
-            button.style.backgroundColor = '#00c8f0'
+            button.style.backgroundColor = '#007b94'
+            project.button = button
+            activeProject.button.style.backgroundColor = '#00c8f0'
+
 
             //Button changes active project, color and displays project tasks upon clicking
             button.onclick = () => {
-                if (!(activeProject) === null) {
-                    activeProject.button.style.backgroundColor = '#007b94'
-                }
-                activeProject = {button, tasks, completedTasks, completedTasksCount}
-                button.style.color.backgroundColor = '#00c8f0'
 
-                removeAllChildElements(DOM.taskContainer)
-
-                for (let key in tasks) {
-                    let task = tasks[key]
-                    DOM.taskContainer.appendChild(createTask(task.name, task.dueDate, task.priority, task.notes, task.checklist))
-                }
+                activeProject.button.style.backgroundColor = '#007b94'
+                button.style.backgroundColor = '#00c8f0'
+                activeProject = project
+                loadTasks(project)
             }
 
             DOM.elements.navBar.appendChild(button)
@@ -244,8 +248,8 @@ const App = (() => {
         return {elements, createTask, createProject};
     })();
 
-    function createProject(name = 'New Project', tasks = {}, completedTasks = {}, completedTasksCount = 0) {
-        return {name, tasks, completedTasks, completedTasksCount};
+    function createProject(name = 'New Project', tasks = {}, completedTasks = {}, completedTasksCount = 0, button = null) {
+        return {name, tasks, completedTasks, completedTasksCount, button};
     }
 
     function createTask(name = 'New Task', dueDate = "", priority = 'Medium', notes = '', checklist = {}) {
@@ -287,4 +291,8 @@ const App = (() => {
             elements.removeChecklistItem.style.display = 'none'
         }
     }
+
+    let activeProject = createProject()
+    DOM.createProject(activeProject)
+
 })();
