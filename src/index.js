@@ -124,9 +124,9 @@ const App = (() => {
             nameInput.setAttribute('contenteditable', 'true')
             nameInput.classList.add('name', 'taskItem')
             nameInput.setAttribute('id', 'name')
-            nameInput.textContent = task.name
+            nameInput.value = task.name
             nameInput.onchange = function() {
-                console.log('test')
+                task.name = nameInput.value
             }
 
             //Due date
@@ -139,6 +139,9 @@ const App = (() => {
             dueDateText.setAttribute('type', 'datetime-local')
             dueDateText.value = task.dueDate
             dueDateDiv.appendChild(dueDateText)
+            dueDateText.onchange = function() {
+                task.dueDate = dueDateText.value
+            }
 
             //Priority
             let priorityDiv = document.createElement('div')
@@ -167,14 +170,16 @@ const App = (() => {
 
             //Notes
             let notesDiv = document.createElement('div')
-            let notesText = document.createElement('div')
+            let notesText = document.createElement('textarea')
             notesDiv.classList.add('taskItem', 'notes')
             notesDiv.setAttribute('id', 'notes')
             notesDiv.textContent = 'Notes'
-            notesText.setAttribute('contenteditable', 'true')
-            notesText.setAttribute('class', 'notesText')
-            notesText.textContent = task.notes
+            notesText.setAttribute('id', 'notesText')
+            notesText.value = task.notes
             notesDiv.appendChild(notesText)
+            notesText.onchange = function() {
+                task.notes = notesText.value
+            }
 
             //Checklist
             let checklistDiv = document.createElement('ol')
