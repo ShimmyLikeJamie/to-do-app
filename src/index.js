@@ -108,12 +108,16 @@ const App = (() => {
                     checklistDiv.style.display = 'inline-block'
                     deleteTaskButton.style.display = 'none'
                     completeTaskButton.style.display = 'none'
+                    addChecklistItem.style.display = 'block'
+                    removeChecklistItem.style.display = 'block'
                 }
                 else { //What to do if it's already expanded
                     notesDiv.style.display = 'none'
                     checklistDiv.style.display = 'none'
                     deleteTaskButton.style.display = 'block'
                     completeTaskButton.style.display = 'block'
+                    addChecklistItem.style.display = 'none'
+                    removeChecklistItem.style.display = 'none'
                 }
             }
 
