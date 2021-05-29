@@ -1,5 +1,6 @@
 const App = (() => {
 
+    let projects = []
     let storage = window.localStorage
 
     function removeAllChildElements(element) {
@@ -17,7 +18,8 @@ const App = (() => {
             deleteProjectButton: document.getElementById('deleteProjectButton'),
             taskContainer: document.getElementById('taskContainer'),
             newTaskButton: document.getElementById('newTaskButton'),
-            showCompletedTasksButton: document.getElementById('showCompletedTasksButton')
+            showCompletedTasksButton: document.getElementById('showCompletedTasksButton'),
+            banner: document.getElementById('banner')
         }
 
         function determinePriorityColor(priorityText) {
@@ -69,16 +71,16 @@ const App = (() => {
             let button = document.createElement('ul')
             button.classList.add('navItem', 'projectButton')
             button.textContent = project.name
-            button.setAttribute('contenteditable', 'true')
             button.style.backgroundColor = '#007b94'
             project.button = button
             activeProject.button.style.backgroundColor = '#00c8f0'
+            
 
 
             //Button changes active project, color and displays project tasks upon clicking
             button.onclick = () => {
 
-                activeProject.button.style.backgroundColor = '#007b94'
+                if (!(activeProject === null)) { activeProject.button.style.backgroundColor = '#007b94'}
                 button.style.backgroundColor = '#00c8f0'
                 activeProject = project
                 loadTasks(project)
@@ -281,12 +283,21 @@ const App = (() => {
         }
     }
 
-    DOM.elements.newProjectButton.onclick = () => { DOM.createProject(createProject()) }
+    //New Project Button
+    DOM.elements.newProjectButton.onclick = () => { 
+        let project = createProject()
+        projects.push(project)
+        DOM.createProject(project)
+        console.log(projects)
+    }
 
+    //Delete Project Button
     DOM.elements.deleteProjectButton.onclick = () => {
-        removeAllChildElements(DOM.elements.taskContainer)
-        activeProject.button.remove()
-        activeProject = null
+        if (!(activeProject === null)) {
+            removeAllChildElements(DOM.elements.taskContainer)
+            activeProject.button.remove()
+            activeProject = null
+        }
     }
 
     DOM.elements.newTaskButton.onclick = () => { 
@@ -314,6 +325,8 @@ const App = (() => {
     }
 
     let activeProject = createProject()
+    projects.push(activeProject)
     DOM.createProject(activeProject)
+    console.log(projects)
 
 })();
