@@ -119,9 +119,7 @@ const App = (() => {
 
 
             //Name
-            let nameInput = document.createElement('input')
-            nameInput.setAttribute('type', 'text')
-            nameInput.setAttribute('contenteditable', 'true')
+            let nameInput = document.createElement('textarea')
             nameInput.classList.add('name', 'taskItem')
             nameInput.setAttribute('id', 'name')
             nameInput.value = task.name
