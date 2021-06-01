@@ -230,13 +230,16 @@ const App = (() => {
             completeTaskButton.style.display = 'none'
             
             completeTaskButton.onclick = () => {
-                for (let task in activeProject.tasks) {
-                    if (activeProject.tasks[task].name === nameInput.textContent) {
-                        activeProject.completedTasks[activeProject.completedTasksCount] = activeProject.tasks[task]
+                let i = 0
+                while (i < activeProject.tasks.length) {
+                    if (activeProject.tasks[i].name === nameInput.value) {
+                        activeProject.completedTasks[activeProject.completedTasksCount] = activeProject.tasks[i]
+                        activeProject.tasks.splice(i, 1)
                         activeProject.completedTasksCount += 1
                         parent.remove()
                         break
                     }
+                    i += 1
                 }
             }
 
