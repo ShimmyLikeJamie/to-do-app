@@ -22,6 +22,11 @@ const App = (() => {
             banner: document.getElementById('banner')
         }
 
+        elements.banner.onchange = function() {
+            activeProject.name = elements.banner.value
+            activeProject.button.textContent = elements.banner.value
+        }
+
         function determinePriorityColor(priorityText) {
             if (priorityText === 'Medium') {
                 return '#bdbd00'
@@ -85,6 +90,7 @@ const App = (() => {
                 button.style.backgroundColor = '#00c8f0'
                 activeProject = project
                 loadTasks(project)
+                DOM.elements.banner.value = activeProject.name
             }
 
             DOM.elements.navBar.appendChild(button)

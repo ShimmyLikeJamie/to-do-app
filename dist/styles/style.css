@@ -51,6 +51,9 @@ ol {
     border-radius: 3px;
     margin-left: 5px;
 }
+.navItem:hover {
+    cursor: pointer;
+}
 
 .name {
     line-height: 20px;
@@ -66,7 +69,7 @@ ol {
     min-height: 50px;
 }
 #name {
-    cursor: default;
+    cursor: pointer;
     overflow-x: hidden;
     overflow-y: auto;
     word-wrap: break-word;
@@ -147,6 +150,7 @@ textarea {
 }
 .addChecklistItem:hover {
     background-color: #00c8f0;
+    cursor: pointer;
 }
 
 .removeChecklistItem  {
@@ -163,6 +167,7 @@ textarea {
 }
 .removeChecklistItem:hover {
     background-color: rgba(228, 78, 78, 1);
+    cursor: pointer;
 }
 
 .taskItem {
@@ -172,11 +177,15 @@ textarea {
     background-color: rgba(0, 123, 148, 0.75);
     margin-top: 2px;
     border-radius: 5px;
-    cursor: default;
 }
 .taskItem:hover {
     border-style: inset;
     background-color: #00c8f0;
+    cursor: pointer;
+}
+
+input {
+    cursor: pointer;
 }
 
 .checklist {
@@ -275,10 +284,10 @@ textarea {
     width: 204px;
     background-color:rgba(0, 123, 148, 0.75);
     border-color:rgba(0, 123, 148, 0.75);
-    cursor: auto;
 }
 #dueDateText:hover {
     background-color: #00c8f0;
+    cursor: pointer;
 }
 
 #deleteProjectButton {
@@ -341,6 +350,12 @@ textarea {
     white-space: nowrap;
     margin-right: 0;
     color: #d6d6d6;
+}
+
+#banner {
+    width: 95%;
+    margin-left: 2.5%;
+    background-color: #007b94;
 }
 
 ::-webkit-scrollbar {
