@@ -2,6 +2,7 @@ const App = (() => {
 
     let projects = []
     let storage = window.localStorage
+    let activeProject = null
 
     function removeAllChildElements(element) {
         while (element.firstChild) {
@@ -375,14 +376,25 @@ const App = (() => {
     }
 
     setInterval(function() {
-        console.log('Saving projects')
+        console.log('Saving projects...')
         storage.setItem('projects', JSON.stringify(projects))
         console.log('Projects saved')
-        console.log(JSON.parse(storage.getItem('projects')))
+        console.log(projects)
     }, 60 * 1000); // 60 * 1000 milsec
     
-    let activeProject = createProject()
-    projects.push(activeProject)
-    DOM.createProject(activeProject)
+
+    if (storage.getItem('projects') == null) {
+        activeProject = createProject()
+        projects.push(activeProject)
+        DOM.createProject(activeProject)
+    }
+    else {
+        projects = JSON.parse(storage.getItem('projects'))
+        let i = 0
+        while (i < projects.length) {
+            DOM.createProject(projects[i])
+            i += 1
+        }
+    }
 
 })();
