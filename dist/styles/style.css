@@ -357,6 +357,9 @@ input {
     margin-left: 2.5%;
     background-color: #007b94;
 }
+#banner:hover {
+    cursor: auto;
+}
 
 ::-webkit-scrollbar {
     width: 10px;

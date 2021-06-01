@@ -23,8 +23,10 @@ const App = (() => {
         }
 
         elements.banner.onchange = function() {
-            activeProject.name = elements.banner.value
-            activeProject.button.textContent = elements.banner.value
+            if (activeProject != null) {
+                activeProject.name = elements.banner.value
+                activeProject.button.textContent = elements.banner.value
+            }
         }
 
         function determinePriorityColor(priorityText) {
