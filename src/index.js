@@ -67,15 +67,13 @@ const App = (() => {
             container.appendChild(elements.newTaskButton)
         }
 
-        function createProject(project) {
+        function createProject(project) { 
             let button = document.createElement('ul')
             button.classList.add('navItem', 'projectButton')
             button.textContent = project.name
             button.style.backgroundColor = '#007b94'
             project.button = button
             activeProject.button.style.backgroundColor = '#00c8f0'
-            
-
 
             //Button changes active project, color and displays project tasks upon clicking
             button.onclick = () => {
@@ -296,6 +294,18 @@ const App = (() => {
         if (!(activeProject === null)) {
             removeAllChildElements(DOM.elements.taskContainer)
             activeProject.button.remove()
+
+            //Remove active project from projects array
+            let i = 0
+
+            while (i < projects.length) {
+                if (activeProject === projects[i]) {
+                    projects.splice(i, 1)
+                    break
+                }
+                i += 1
+            }
+
             activeProject = null
         }
     }
@@ -327,6 +337,5 @@ const App = (() => {
     let activeProject = createProject()
     projects.push(activeProject)
     DOM.createProject(activeProject)
-    console.log(projects)
 
 })();
