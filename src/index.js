@@ -73,7 +73,10 @@ const App = (() => {
             button.textContent = project.name
             button.style.backgroundColor = '#007b94'
             project.button = button
-            activeProject.button.style.backgroundColor = '#00c8f0'
+
+            if (activeProject != null) {
+                activeProject.button.style.backgroundColor = '#00c8f0'
+            }
 
             //Button changes active project, color and displays project tasks upon clicking
             button.onclick = () => {
