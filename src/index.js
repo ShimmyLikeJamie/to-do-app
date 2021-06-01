@@ -395,6 +395,7 @@ const App = (() => {
             DOM.createProject(projects[i])
             i += 1
         }
+        removeAllChildElements(DOM.elements.taskContainer)
     }
 
 })();
