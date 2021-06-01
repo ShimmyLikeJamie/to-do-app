@@ -30,6 +30,10 @@ ol {
     display: inline-block;
 }
 
+.footer {
+    color: #d6d6d6;
+}
+
 .navItem {
     position: relative;
     display: inline-block;

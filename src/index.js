@@ -374,6 +374,13 @@ const App = (() => {
         }
     }
 
+    setInterval(function() {
+        console.log('Saving projects')
+        storage.setItem('projects', JSON.stringify(projects))
+        console.log('Projects saved')
+        console.log(JSON.parse(storage.getItem('projects')))
+    }, 60 * 1000); // 60 * 1000 milsec
+    
     let activeProject = createProject()
     projects.push(activeProject)
     DOM.createProject(activeProject)
