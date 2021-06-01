@@ -251,7 +251,18 @@ const App = (() => {
             deleteTaskButton.style.display = 'none'
 
             deleteTaskButton.onclick = () => {
+                let i = 0
+                console.log(activeProject.tasks)
+                while (i < activeProject.tasks.length) {
+                    if (activeProject.tasks[i].name === nameInput.value) {
+                        activeProject.tasks.splice(i, 1)
+                        break
+                    }
+                    i += 1
+                }
                 parent.remove()
+                console.log('after removal')
+                console.log(activeProject.tasks)
             }
 
             //Append parent to task container, then task elements to parent
@@ -267,14 +278,14 @@ const App = (() => {
             parent.appendChild(completeTaskButton)
             parent.appendChild(deleteTaskButton)
 
-            return {taskExpand, completeTaskButton, deleteTaskButton, addChecklistItem, removeChecklistItem}
+            return {taskExpand, completeTaskButton, deleteTaskButton, addChecklistItem, removeChecklistItem, priorityDiv}
         }
 
-        return {elements, createTask, createProject};
+        return {elements, createTask, createProject, loadTasks};
     })();
 
-    function createProject(name = 'New Project', tasks = [], completedTasks = [], completedTasksCount = 0, button = null) {
-        return {name, tasks, completedTasks, completedTasksCount, button};
+    function createProject(name = 'New Project', tasks = [], completedTasks = [], completedTasksCount = 0, button = null, showCompletedTasks = false) {
+        return {name, tasks, completedTasks, completedTasksCount, button, showCompletedTasks};
     }
 
     function createTask(name = 'New Task', dueDate = "", priority = 'Medium', notes = '', checklist = {}) {
@@ -328,15 +339,30 @@ const App = (() => {
         DOM.elements.taskContainer.appendChild(newTaskContainer)
     }
 
-    DOM.elements.showCompletedTasksButton.onclick = () => {
-        removeAllChildElements(DOM.elements.taskContainer)
-        for (let task in activeProject.completedTasks) {
-            let elements = DOM.createTask(activeProject.completedTasks[task])
-            elements.taskExpand.style.display = 'none'
-            elements.completeTaskButton.style.display = 'none'
-            elements.deleteTaskButton.style.display = 'none'
-            elements.addChecklistItem.style.display = 'none'
-            elements.removeChecklistItem.style.display = 'none'
+    DOM.elements.showCompletedTasksButton.onclick = () => { //Show completed tasks button
+
+        if (activeProject.showCompletedTasks == false) {
+            removeAllChildElements(DOM.elements.taskContainer)
+            let i = 0
+            while (i < activeProject.completedTasks.length) {
+                let elements = DOM.createTask(activeProject.completedTasks[i])
+                elements.taskExpand.style.display = 'none'
+                
+                elements.completeTaskButton.style.display = 'none'
+                elements.deleteTaskButton.style.display = 'none'
+                elements.addChecklistItem.style.display = 'none'
+                elements.removeChecklistItem.style.display = 'none'
+                elements.priorityDiv.style.display = 'none'
+
+                i += 1
+            }
+            activeProject.showCompletedTasks = true
+            DOM.elements.showCompletedTasksButton.style.backgroundColor = "#00c8f0"
+        }
+        else {
+            DOM.loadTasks(activeProject)
+            activeProject.showCompletedTasks = false
+            DOM.elements.showCompletedTasksButton.style.backgroundColor = "#007b94"
         }
     }
 
