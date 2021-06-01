@@ -51,11 +51,10 @@ const App = (() => {
 
         function createChecklistItem(text = 'New Item') {
 
-            let checklistItem = document.createElement('li')
+            let checklistItem = document.createElement('textarea')
             checklistItem.setAttribute('class', 'checklistItem')
             checklistItem.id = 'checklistItem'
-            checklistItem.setAttribute('contenteditable', 'true')
-            checklistItem.textContent = text
+            checklistItem.value = text
             return checklistItem
         }
 
@@ -215,6 +214,8 @@ const App = (() => {
             //Functionality for checklist buttons
             addChecklistItem.onclick = () => {
                 addChecklistItem.previousSibling.appendChild(createCheckbox())
+                let item = createChecklistItem()
+                task.checklist.push(item.value)
                 addChecklistItem.previousSibling.appendChild(createChecklistItem())
             }
             removeChecklistItem.onclick = () => {
@@ -226,9 +227,16 @@ const App = (() => {
                 }
             }
             //Append checklist items (if they exist)
-            for (let item in task.checklist) {
+            let i = 0
+            while (i < task.checklist.length) {
                 checklistDiv.appendChild(createCheckbox())
-                checklistDiv.appendChild(createChecklistItem(task.checklist[item]))
+                let item = createChecklistItem(task.checklist[i])
+                checklistDiv.appendChild(item)
+
+                item.onchange = function() {
+                    task.checklist[i] = item.value
+                }
+                i += 1
             }
 
             //Complete task button
@@ -297,7 +305,7 @@ const App = (() => {
         return {name, tasks, completedTasks, completedTasksCount, button, showCompletedTasks};
     }
 
-    function createTask(name = 'New Task', dueDate = "", priority = 'Medium', notes = '', checklist = {}) {
+    function createTask(name = 'New Task', dueDate = "", priority = 'Medium', notes = '', checklist = []) {
         return {
             name,
             dueDate,

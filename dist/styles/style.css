@@ -54,6 +54,7 @@ ol {
     text-overflow: ellipsis;
     border-radius: 3px;
     margin-left: 5px;
+    color:#d6d6d6
 }
 .navItem:hover {
     cursor: pointer;
@@ -66,7 +67,7 @@ ol {
     white-space: normal;
     border: solid rgba(31, 31, 31, 0.75);
     margin-left: 0;
-    max-width: 250px;
+    max-width: 400px;
     width: 100%;
     display: block;
     height: auto;
@@ -115,8 +116,8 @@ textarea {
     border-color: rgba(31, 31, 31, 0.75);
     display: block;
     height: 100%;
-    width: 250px;
-    min-width: 250px;
+    width: 400px;
+    min-width: 300px;
     white-space: normal;
     word-wrap: break-word;
     margin-right: 0;
@@ -128,10 +129,12 @@ textarea {
 .checklistItem {
     display: block;
     padding-left: 0;
-    width:200px;
+    width: 92%;
     margin: 0;
     text-align: left;
-    height: 60px;
+    min-height: 80px;
+    min-width: 260px;
+    background-color: rgba(0, 60, 82, .75);
 }
 
 
@@ -194,7 +197,7 @@ input {
 
 .checklist {
     display: inline-block;
-    width: 240px;
+    width: 97%;
     margin-left: 3px;
     height: 20px;
     padding-left: 0;
