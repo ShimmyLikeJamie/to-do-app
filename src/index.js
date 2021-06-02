@@ -132,7 +132,6 @@ const App = (() => {
                 }
             }
 
-
             //Name
             let nameInput = document.createElement('textarea')
             nameInput.classList.add('name', 'taskItem')
@@ -216,12 +215,20 @@ const App = (() => {
                 addChecklistItem.previousSibling.appendChild(createCheckbox())
                 let item = createChecklistItem()
                 task.checklist.push(item.value)
-                addChecklistItem.previousSibling.appendChild(createChecklistItem())
+                addChecklistItem.previousSibling.appendChild(item)
             }
             removeChecklistItem.onclick = () => {
                 let checklist = addChecklistItem.previousElementSibling
                 let lastItem = checklist.lastChild
                 if (lastItem != null && lastItem.nodeName != 'BR') {
+                    let i = 0
+                    while (i < task.checklist.length) {
+                        if (lastItem.value === task.checklist[i]) {
+                            task.checklist.splice(i, 1)
+                            break
+                        }
+                        i += 1
+                    }
                     lastItem.previousSibling.remove()
                     lastItem.remove() 
                 }
