@@ -238,10 +238,19 @@ const App = (() => {
             while (i < task.checklist.length) {
                 checklistDiv.appendChild(createCheckbox())
                 let item = createChecklistItem(task.checklist[i])
+                let cachedval = item.value
                 checklistDiv.appendChild(item)
 
                 item.onchange = function() {
-                    task.checklist[i] = item.value
+                    let x = 0
+                    while (x < task.checklist.length) {
+                        if (task.checklist[x] == cachedval) {
+                            task.checklist[x] = item.value
+                            cachedval = item.value
+                            break
+                        }
+                        x += 1
+                    }
                 }
                 i += 1
             }
