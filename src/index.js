@@ -1,4 +1,5 @@
-const App = (() => {
+// Entire App is in an IIFE
+(() => {
 
     let projects = []
     let storage = window.localStorage
