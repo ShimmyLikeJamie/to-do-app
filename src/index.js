@@ -133,12 +133,12 @@ const App = (() => {
             }
 
             //Name
-            let nameInput = document.createElement('textarea')
-            nameInput.classList.add('name', 'taskItem')
-            nameInput.setAttribute('id', 'name')
-            nameInput.value = task.name
-            nameInput.onchange = function() {
-                task.name = nameInput.value
+            let nameDiv = document.createElement('textarea')
+            nameDiv.classList.add('name', 'taskItem')
+            nameDiv.setAttribute('id', 'name')
+            nameDiv.value = task.name
+            nameDiv.onchange = function() {
+                task.name = nameDiv.value
             }
 
             //Due date
@@ -265,7 +265,7 @@ const App = (() => {
             completeTaskButton.onclick = () => {
                 let i = 0
                 while (i < activeProject.tasks.length) {
-                    if (activeProject.tasks[i].name === nameInput.value) {
+                    if (activeProject.tasks[i].name === nameDiv.value) {
                         activeProject.completedTasks[activeProject.completedTasksCount] = activeProject.tasks[i]
                         activeProject.tasks.splice(i, 1)
                         activeProject.completedTasksCount += 1
@@ -287,7 +287,7 @@ const App = (() => {
                 let i = 0
                 console.log(activeProject.tasks)
                 while (i < activeProject.tasks.length) {
-                    if (activeProject.tasks[i].name === nameInput.value) {
+                    if (activeProject.tasks[i].name === nameDiv.value) {
                         activeProject.tasks.splice(i, 1)
                         break
                     }
@@ -301,7 +301,7 @@ const App = (() => {
             //Append parent to task container, then task elements to parent
             container.appendChild(parent)
             parent.appendChild(taskExpand)
-            parent.appendChild(nameInput)
+            parent.appendChild(nameDiv)
             parent.appendChild(dueDateDiv)
             parent.appendChild(priorityDiv)
             parent.appendChild(notesDiv)
